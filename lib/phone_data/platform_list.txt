@@ -1,0 +1,14 @@
+Android
+bada
+BlackBerry OS
+iOS
+Linux
+MeeGo
+Palm OS
+Series 40
+Series 60
+Symbian
+Symbian UIQ
+webOS
+Windows Mobile
+Windows Phone

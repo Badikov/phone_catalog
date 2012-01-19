@@ -12,3 +12,7 @@ CaseType.create([{name: 'классический'}, {name: 'раскладуш�
 # Types
 Type.create([{name: 'смартфон/коммуникатор'}, {name: 'телефон'}])
 
+# Platforms
+File.open('lib/phone_data/platform_list.txt').each_line do |platform_name|
+  Platform.create(name: platform_name)
+end
