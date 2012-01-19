@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+File.open('lib/phone_data/vendor_list.txt').each_line do |vendor_name|
+  Vendor.create(name: vendor_name)
+end
