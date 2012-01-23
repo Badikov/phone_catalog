@@ -1,8 +1,8 @@
 # encoding: utf-8
 
 # Vendors
-File.open('lib/phone_data/vendor_list.txt').each_line do |vendor_name|
-  Vendor.create(name: vendor_name)
+File.open('lib/phone_data/vendor_list.txt', 'r:utf-8').each_line do |vendor_name|
+  Vendor.create(name: vendor_name.strip)
 end
 
 #Case types
@@ -13,11 +13,11 @@ CaseType.create([{name: 'классический'}, {name: 'раскладуш�
 Type.create([{name: 'смартфон/коммуникатор'}, {name: 'телефон'}])
 
 # Platforms
-File.open('lib/phone_data/platform_list.txt').each_line do |platform_name|
-  Platform.create(name: platform_name)
+File.open('lib/phone_data/platform_list.txt', 'r:utf-8').each_line do |platform_name|
+  Platform.create(name: platform_name.strip)
 end
 
 # Screen types
-File.open('lib/phone_data/screen_type_list.txt').each_line do |screen_type_name|
-  ScreenType.create(name: screen_type_name)
+File.open('lib/phone_data/screen_type_list.txt', 'r:utf-8').each_line do |screen_type_name|
+  ScreenType.create(name: screen_type_name.strip)
 end

@@ -1,3 +1,4 @@
+монохромный
 AFFS
 AMOLED
 IPS
