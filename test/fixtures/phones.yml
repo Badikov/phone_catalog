@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  weight: 1
+  screen_size: 9.99
+  contain_touch_screen: false
+  contain_3g: false
+  contain_wifi: false
+  contain_bluetooth: false
+  contain_gps: false
+  contain_memory_card: false
+  contain_mp3_player: false
+  contain_radio: false
+  contain_double_sim_support: false
+  contain_camera: false
+  image: MyString
+  big_image: MyString
+
+two:
+  name: MyString
+  weight: 1
+  screen_size: 9.99
+  contain_touch_screen: false
+  contain_3g: false
+  contain_wifi: false
+  contain_bluetooth: false
+  contain_gps: false
+  contain_memory_card: false
+  contain_mp3_player: false
+  contain_radio: false
+  contain_double_sim_support: false
+  contain_camera: false
+  image: MyString
+  big_image: MyString

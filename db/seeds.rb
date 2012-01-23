@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require Rails.root + 'lib/phone_data/phones_init_data_parser'
+
 # Vendors
 File.open('lib/phone_data/vendor_list.txt', 'r:utf-8').each_line do |vendor_name|
   Vendor.create(name: vendor_name.strip)
@@ -9,8 +11,8 @@ end
 CaseType.create([{name: 'классический'}, {name: 'раскладушка'}, {name: 'ротатор'},
                  {name: 'с откидной крышкой'}, {name: 'слайдер'}, {name: 'часы'}])
 
-# Types
-Type.create([{name: 'смартфон/коммуникатор'}, {name: 'телефон'}])
+# Phone types
+PhoneType.create([{name: 'смартфон/коммуникатор'}, {name: 'телефон'}])
 
 # Platforms
 File.open('lib/phone_data/platform_list.txt', 'r:utf-8').each_line do |platform_name|
@@ -24,3 +26,6 @@ end
 
 # Touch screen types
 TouchScreenType.create([{name: 'емкостный'}, {name: 'резистивный'}])
+
+# Phones
+PhonesInitDataParser.new.parse_and_seed
