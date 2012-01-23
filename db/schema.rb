@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120119124217) do
+ActiveRecord::Schema.define(:version => 20120123112753) do
 
   create_table "case_types", :force => true do |t|
     t.string "name", :null => false
@@ -22,6 +22,10 @@ ActiveRecord::Schema.define(:version => 20120119124217) do
   end
 
   create_table "screen_types", :force => true do |t|
+    t.string "name", :null => false
+  end
+
+  create_table "touch_screen_types", :force => true do |t|
     t.string "name", :null => false
   end
 

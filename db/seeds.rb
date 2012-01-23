@@ -21,3 +21,6 @@ end
 File.open('lib/phone_data/screen_type_list.txt', 'r:utf-8').each_line do |screen_type_name|
   ScreenType.create(name: screen_type_name.strip)
 end
+
+# Touch screen types
+TouchScreenType.create([{name: 'емкостный'}, {name: 'резистивный'}])
