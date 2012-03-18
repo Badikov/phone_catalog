@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120123133902) do
+ActiveRecord::Schema.define(:version => 20120318161619) do
 
   create_table "case_types", :force => true do |t|
     t.string "name", :null => false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20120123133902) do
   create_table "phones", :force => true do |t|
     t.string  "name",                                                                        :null => false
     t.integer "weight"
-    t.decimal "screen_size",                :precision => 2, :scale => 2
+    t.decimal "screen_size",                :precision => 4, :scale => 2
     t.boolean "contain_touch_screen",                                     :default => false
     t.boolean "contain_3g",                                               :default => false
     t.boolean "contain_wifi",                                             :default => false
