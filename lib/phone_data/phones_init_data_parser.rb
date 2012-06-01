@@ -110,13 +110,13 @@ class PhonesInitDataParser
       # image
       image_filename = 'img/' + base_image_name
       if File.file?('public/' + image_filename)
-        phone['image'] = image_filename
+        phone['image'] = base_image_name
       end
 
       # big image
       big_image_filename = 'img/big/' + base_image_name
       if File.file?('public/' + big_image_filename)
-        phone['big_image'] = big_image_filename
+        phone['big_image'] = base_image_name
       end
 
       # puts File.basename(filename, '.txt')
