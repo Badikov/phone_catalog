@@ -1,4 +1,10 @@
 PhoneCatalog::Application.routes.draw do
+  get "main/index"
+
+  resources :vendors
+
+  root to: "main#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

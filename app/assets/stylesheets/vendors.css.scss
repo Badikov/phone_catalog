@@ -1,0 +1,11 @@
+#vendors li {
+  text-align: center;
+
+  .well {
+    cursor: pointer;
+  }
+
+  .well:hover {
+    background-color: #999;
+  }
+}
