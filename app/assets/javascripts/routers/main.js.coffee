@@ -8,10 +8,6 @@ class PhoneCatalog.Routers.Main extends Backbone.Router
     @.on("all", -> console.log arguments)
 
   index: ->
-    unless @vendorsView?
-      @vendorsView = new PhoneCatalog.Views.VendorsIndex()
-      @vendorsView.collection.on("select", @selectVendor, @)
-
     if @phonesView?
       @hidePhones(=> @showVendors())
     else
@@ -23,23 +19,29 @@ class PhoneCatalog.Routers.Main extends Backbone.Router
     else
       @showPhones(vendorName)
 
-  selectVendor: (vendor) ->
-    @navigate("#{vendor.get('url')}", {trigger: true})
-
   showVendors: ->
-    $(@vendorsView.el).fadeIn "slow"
-    $("#container").html(@vendorsView.el)
+    unless @vendorsView?
+      @vendorsView = new PhoneCatalog.Views.VendorsIndex()
+      @vendorsView.collection.on("select", @selectVendor, @)
+
+    @vendorsView.collection.fetch
+      success: =>
+        $(@vendorsView.el).fadeIn("slow")
+        $("#container").html(@vendorsView.el)
 
   hideVendors: (callback) ->
     $(@vendorsView.el).fadeOut "slow", ->
-      callback()
+      callback() if callback?
 
   showPhones: (vendorName) ->
     @phonesView = new PhoneCatalog.Views.PhonesIndex() unless @phonesView?
-    $(@phonesView.el).fadeIn("slow")
-    $("#container").html(@phonesView.el)
-    @phonesView.collection.fetchByVendor(vendorName)
+    @phonesView.collection.fetchByVendor vendorName, =>
+      $(@phonesView.el).fadeIn("slow")
+      $("#container").html(@phonesView.el)
 
   hidePhones: (callback) ->
     $(@phonesView.el).fadeOut "slow", ->
-      callback()
+      callback() if callback?
+
+  selectVendor: (vendor) ->
+    @navigate("#{vendor.get('url')}", {trigger: true})

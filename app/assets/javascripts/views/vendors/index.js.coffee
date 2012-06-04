@@ -7,7 +7,6 @@ class PhoneCatalog.Views.VendorsIndex extends Backbone.View
   initialize: ->
     @collection = new PhoneCatalog.Collections.Vendors()
     @collection.on("reset", @render, @)
-    @collection.fetch()
 
   render: ->
     $(@el).html(@template())
