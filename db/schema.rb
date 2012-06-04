@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120318161619) do
+ActiveRecord::Schema.define(:version => 20120604132545) do
 
   create_table "case_types", :force => true do |t|
     t.string "name", :null => false
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20120318161619) do
 
   create_table "vendors", :force => true do |t|
     t.string "name", :null => false
+    t.string "url"
   end
 
 end

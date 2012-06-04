@@ -24,7 +24,7 @@ class PhoneCatalog.Routers.Main extends Backbone.Router
       @showPhones(vendorName)
 
   selectVendor: (vendor) ->
-    @navigate("#{vendor.get('name')}", {trigger: true})
+    @navigate("#{vendor.get('url')}", {trigger: true})
 
   showVendors: ->
     $(@vendorsView.el).fadeIn "slow"

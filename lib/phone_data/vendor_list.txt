@@ -61,6 +61,6 @@ Viewsonic
 Voxtel
 Watchtech
 ZTE
-Билайн
-МТС
-МегаФон
+Билайн|beeline
+МТС|mts
+МегаФон|megafon

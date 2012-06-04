@@ -7,7 +7,7 @@ class Phone < ActiveRecord::Base
   belongs_to :screen_type
   belongs_to :touch_screen_type
 
-  def self.by_vendor(vendor_name)
-    includes(:vendor).where(vendors: {name: vendor_name})
+  def self.by_vendor_url(vendor_url)
+    includes(:vendor).where(vendors: {url: vendor_url})
   end
 end
