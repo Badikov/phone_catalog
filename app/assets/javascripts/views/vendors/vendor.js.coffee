@@ -4,7 +4,13 @@ class PhoneCatalog.Views.Vendor extends Backbone.View
 
   template: JST["vendors/vendor"]
 
+  events:
+    "click a": "selectVendor"
+
   render: ->
-    console.log @model
     $(@el).html(@template(vendor: @model))
     @
+
+  selectVendor: (event) ->
+    event.preventDefault()
+    @collection.trigger("select", @model)

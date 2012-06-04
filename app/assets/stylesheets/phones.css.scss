@@ -1,0 +1,22 @@
+#phones li {
+
+  height: 250px;
+
+  text-align: center;
+
+  a img {
+    margin: 3px;
+  }
+
+  a {
+    @include border-radius(5px);
+    cursor: pointer;
+    border: 2px solid transparent;
+    vertical-align: middle;
+  }
+
+  a:hover {
+    border: 2px solid #08C;
+    text-decoration: none;
+  }
+}

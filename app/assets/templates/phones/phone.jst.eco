@@ -1,0 +1,5 @@
+<a class="span3">
+  <img src="img/<%= @phone.get('image') %>">
+  <br/>
+  <%= @phone.get('name') %>
+</a>

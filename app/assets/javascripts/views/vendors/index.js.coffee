@@ -5,11 +5,15 @@ class PhoneCatalog.Views.VendorsIndex extends Backbone.View
   template: JST['vendors/index']
 
   initialize: ->
+    @collection = new PhoneCatalog.Collections.Vendors()
     @collection.on("reset", @render, @)
+    @collection.fetch()
 
   render: ->
     $(@el).html(@template())
-    @collection.each (vendor)->
-      vendorView = new PhoneCatalog.Views.Vendor(model: vendor)
-      @$("#vendors").append(vendorView.render().el)
+    @collection.each(@appendVendor, @)
     @
+
+  appendVendor: (vendor) ->
+    vendorView = new PhoneCatalog.Views.Vendor(model: vendor, collection: @collection)
+    @$("#vendors").append(vendorView.render().el)

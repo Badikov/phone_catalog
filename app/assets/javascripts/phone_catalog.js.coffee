@@ -4,7 +4,7 @@ window.PhoneCatalog =
   Views: {}
   Routers: {}
   init: ->
-    new PhoneCatalog.Routers.Vendors()
+    new PhoneCatalog.Routers.Main()
     Backbone.history.start(pushState: true)
 
 $(document).ready ->
