@@ -1,6 +1,7 @@
 class PhoneCatalog.Views.PhonesIndex extends Backbone.View
 
-  className: "row"
+  id: "phones-index"
+  className: "row tab-pane fade"
 
   template: JST['phones/index']
 
@@ -16,3 +17,6 @@ class PhoneCatalog.Views.PhonesIndex extends Backbone.View
   appendPhone: (phone) ->
     phoneView = new PhoneCatalog.Views.Phone(model: phone)
     @$("#phones").append(phoneView.render().el)
+
+  show: ->
+    $("a[href='##{@id}']").tab('show')

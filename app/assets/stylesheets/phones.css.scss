@@ -4,19 +4,18 @@
 
   text-align: center;
 
-  a img {
-    margin: 3px;
-  }
-
-  a {
+  > div {
     @include border-radius(5px);
     cursor: pointer;
     border: 2px solid transparent;
     vertical-align: middle;
   }
 
-  a:hover {
+  > div:hover {
     border: 2px solid #08C;
+  }
+
+  a {
     text-decoration: none;
   }
 }
