@@ -1,0 +1,7 @@
+%tr
+  %td= @property
+  %td.value
+    - if @phone.get(@property)
+      %i.icon-ok
+    - else
+      %i.icon-remove

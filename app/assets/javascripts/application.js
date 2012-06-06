@@ -9,6 +9,7 @@
 //= require bootstrap
 //= require underscore
 //= require backbone
+//= require hamlcoffee
 //
 //= require phone_catalog
 //

@@ -1,0 +1,9 @@
+- if @phone.get(@property)?
+  %tr
+    %td= @property
+    - if @subproperty
+      %td.value= @phone.get(@property)[@subproperty]
+    - else
+      %td.value
+        = @phone.get(@property)
+        = @suffix if @suffix?
