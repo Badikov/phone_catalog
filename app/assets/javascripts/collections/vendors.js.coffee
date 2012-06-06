@@ -1,4 +1,5 @@
 class PhoneCatalog.Collections.Vendors extends Backbone.Collection
 
   model: PhoneCatalog.Models.Vendor
-  url: "vendors"
+  url: ->
+    Backbone.history.options.root + "api/vendors"

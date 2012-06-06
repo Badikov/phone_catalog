@@ -1,0 +1,90 @@
+<% console.log this %>
+
+<h1><%= @phone.get('name') %></h1>
+<div class="row">
+  <div class="span4"><img src="<%= @phone.image_url() %>" /></div>
+  <div class="span8">
+    <table class="table">
+      <tr>
+        <td class="span3">Производитель</td>
+        <td><%= @phone.get('vendor').name %></td>
+      </tr>
+      <% if @phone.get('phone_type')?: %>
+          <tr>
+            <td class="span3">Тип</td>
+            <td><%= @phone.get('phone_type').name %></td>
+          </tr>
+      <% end %>
+      <% if @phone.get('case_type')?: %>
+          <tr>
+            <td>Тип корпуса</td>
+            <td><%= @phone.get('case_type').name %></td>
+          </tr>
+      <% end %>
+      <% if @phone.get('platform')?: %>
+          <tr>
+            <td>Платформа</td>
+            <td><%= @phone.get('platform').name %></td>
+          </tr>
+      <% end %>
+      <% if @phone.get('phone_type')?: %>
+          <tr>
+            <td>Тип экрана</td>
+            <td><%= @phone.get('phone_type').name %></td>
+          </tr>
+      <% end %>
+      <% if @phone.get('phone_type')?: %>
+          <tr>
+            <td>Тип корпуса</td>
+            <td><%= @phone.get('phone_type').name %></td>
+          </tr>
+      <% end %>
+      <% if @phone.get('phone_type')?: %>
+          <tr>
+            <td>Тип сенсорного экрана</td>
+            <td><%= @phone.get('phone_type').name %></td>
+          </tr>
+      <% end %>
+      <% if @phone.get('phone_type')?: %>
+          <tr>
+            <td>Размер экрана</td>
+            <td><%= @phone.get('phone_type') %></td>
+          </tr>
+      <% end %>
+      <% if @phone.get('phone_type')?: %>
+          <tr>
+            <td>Масса</td>
+            <td><%= @phone.get('phone_type') %></td>
+          </tr>
+      <% end %>
+
+      <tr>
+        <td>Сенсорный экран</td>
+      </tr>
+      <tr>
+        <td>3G</td>
+      </tr>
+      <tr>
+        <td>Wi-fi</td>
+      </tr>
+      <tr>
+        <td>Bluetooth</td>
+      </tr>
+      <tr>
+        <td>GPS</td>
+      </tr>
+      <tr>
+        <td>Карта памяти</td>
+      </tr>
+      <tr>
+        <td>MP3</td>
+      </tr>
+      <tr>
+        <td>Камера</td>
+      </tr>
+      <tr>
+        <td>Поддержка двух SIM-карт</td>
+      </tr>
+    </table>
+  </div>
+</div>

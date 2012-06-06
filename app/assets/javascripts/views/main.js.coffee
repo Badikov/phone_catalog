@@ -22,14 +22,24 @@ class PhoneCatalog.Views.Main extends Backbone.View
     @phonesView.collection.fetchByVendor vendorName, =>
       @phonesView.show()
 
-  selectVendor: (vendor) ->
-    Backbone.history.navigate("#{vendor.get('url')}", {trigger: true})
+  showPhoneDetails: (phoneId) ->
+    @createDetailsView() unless @detailsView
+    phone = new PhoneCatalog.Models.Phone(id: phoneId)
+    @detailsView.setPhone(phone)
+    phones = new PhoneCatalog.Collections.Phones([phone])
+    phone.fetch
+      success: =>
+        console.log phone
+        @detailsView.show()
 
   createVendorsView: ->
     @vendorsView = new PhoneCatalog.Views.VendorsIndex()
     @$('.tab-content').append(@vendorsView.el)
-    @vendorsView.collection.on("select", @selectVendor, @)
 
   createPhonesView: ->
     @phonesView = new PhoneCatalog.Views.PhonesIndex()
     @$('.tab-content').append(@phonesView.el)
+
+  createDetailsView: ->
+    @detailsView = new PhoneCatalog.Views.PhoneDetails()
+    @$('.tab-content').append(@detailsView.el)

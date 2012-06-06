@@ -6,8 +6,10 @@ class PhoneCatalog.Views.PhonesIndex extends Backbone.View
   template: JST['phones/index']
 
   initialize: ->
+    _.extend this, PhoneCatalog.Utils.BootstrapTab
     @collection = new PhoneCatalog.Collections.Phones()
     @collection.on("reset", @render, @)
+    @collection.on("select", @selectPhone, @)
 
   render: ->
     $(@el).html(@template())
@@ -15,8 +17,8 @@ class PhoneCatalog.Views.PhonesIndex extends Backbone.View
     @
 
   appendPhone: (phone) ->
-    phoneView = new PhoneCatalog.Views.Phone(model: phone)
+    phoneView = new PhoneCatalog.Views.Phone(model: phone, collection: @collection)
     @$("#phones").append(phoneView.render().el)
 
-  show: ->
-    $("a[href='##{@id}']").tab('show')
+  selectPhone: (phone) ->
+    Backbone.history.navigate("phones/#{phone.get('id')}", {trigger: true})

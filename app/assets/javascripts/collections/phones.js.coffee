@@ -1,7 +1,8 @@
 class PhoneCatalog.Collections.Phones extends Backbone.Collection
 
   model: PhoneCatalog.Models.Phone
-  url: "phones"
+  url: ->
+    Backbone.history.options.root + "api/phones"
 
   fetchByVendor: (vendorName, callback) ->
     @fetch

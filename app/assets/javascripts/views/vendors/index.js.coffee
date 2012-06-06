@@ -6,8 +6,10 @@ class PhoneCatalog.Views.VendorsIndex extends Backbone.View
   template: JST['vendors/index']
 
   initialize: ->
+    _.extend this, PhoneCatalog.Utils.BootstrapTab
     @collection = new PhoneCatalog.Collections.Vendors()
     @collection.on("reset", @render, @)
+    @collection.on("select", @selectVendor, @)
 
   render: ->
     $(@el).html(@template())
@@ -18,5 +20,5 @@ class PhoneCatalog.Views.VendorsIndex extends Backbone.View
     vendorView = new PhoneCatalog.Views.Vendor(model: vendor, collection: @collection)
     @$("#vendors").append(vendorView.render().el)
 
-  show: ->
-    $("a[href='##{@id}']").tab('show')
+  selectVendor: (vendor) ->
+    Backbone.history.navigate("#{vendor.get('url')}", {trigger: true})

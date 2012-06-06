@@ -4,8 +4,10 @@ PhoneCatalog::Application.routes.draw do
 
   root to: "main#index"
 
-  resources :vendors, only: :index
-  resources :phones, only: :index
+  scope "api" do
+    resources :vendors, only: :index
+    resources :phones, only: [:index, :show]
+  end
 
   match "*path", to: "main#index"
 

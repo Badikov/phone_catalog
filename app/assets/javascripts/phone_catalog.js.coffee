@@ -3,9 +3,11 @@ window.PhoneCatalog =
   Collections: {}
   Views: {}
   Routers: {}
+  Utils: {}
   init: ->
     new PhoneCatalog.Routers.Main()
-    Backbone.history.start(pushState: true, root: $("body").data("root"))
+    root = $("body").data("root")
+    Backbone.history.start(pushState: true, root: root)
 
 $(document).ready ->
   PhoneCatalog.init()

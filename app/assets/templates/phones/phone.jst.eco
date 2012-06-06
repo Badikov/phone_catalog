@@ -1,6 +1,6 @@
 <div>
     <a>
-      <img src="img/<%= @phone.get('image') %>">
+      <img src="<%= @phone.image_url() %>">
       <br/>
       <%= @phone.get('name') %>
     </a>

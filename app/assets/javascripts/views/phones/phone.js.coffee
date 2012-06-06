@@ -6,6 +6,13 @@ class PhoneCatalog.Views.Phone extends Backbone.View
 
   template: JST['phones/phone']
 
+  events:
+    "click": "selectPhone"
+
   render: ->
     $(@el).html(@template(phone: @model))
     @
+
+  selectPhone: ->
+    event.preventDefault()
+    @collection.trigger("select", @model)
