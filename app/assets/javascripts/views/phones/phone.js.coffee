@@ -13,6 +13,6 @@ class PhoneCatalog.Views.Phone extends Backbone.View
     $(@el).html(@template(phone: @model))
     @
 
-  selectPhone: ->
+  selectPhone: (event) ->
     event.preventDefault()
     @collection.trigger("select", @model)
