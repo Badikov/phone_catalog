@@ -10,6 +10,8 @@
 //= require underscore
 //= require backbone
 //= require hamlcoffee
+//= require i18n
+//= require i18n/translations
 //
 //= require phone_catalog
 //

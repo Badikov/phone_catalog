@@ -6,8 +6,8 @@
       %tbody
         - for property in ["vendor", "phone_type", "case_type", "platform", "screen_type", "touch_screen_type"]
           != JST["phones/_property"]({ property: property, phone: @phone, subproperty: 'name' })
-        != JST["phones/_property"]({ property: "screen_size", phone: @phone, suffix: " inches" })
-        != JST["phones/_property"]({ property: "weight", phone: @phone, suffix: " grams" })
+        != JST["phones/_property"]({ property: "screen_size", phone: @phone, suffix: I18n.t("inches") })
+        != JST["phones/_property"]({ property: "weight", phone: @phone, suffix: I18n.t("grams") })
         - for property in ["contain_touch_screen", "contain_3g", "contain_wifi", "contain_bluetooth", "contain_gps",
         - "contain_memory_card", "contain_mp3_player", "contain_radio", "contain_camera", "contain_double_sim_support"]
           != JST["phones/_boolean_property"]({ property: property, phone: @phone })

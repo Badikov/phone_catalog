@@ -1,0 +1,23 @@
+ru:
+  inches: "дюймов"
+  grams: "грамм"
+
+  phone:
+    vendor: "Производитель"
+    phone_type: "Тип"
+    case_type: "Тип корпуса"
+    platform: "Операционная система"
+    screen_type: "Тип экрана"
+    touch_screen_type: "Тип сенсорного экрана"
+    screen_size: "Размер экрана"
+    weight: "Масса"
+    contain_touch_screen: "Сенсорный экран"
+    contain_3g: "3G"
+    contain_wifi: "Wi-Fi"
+    contain_bluetooth: "BlueTooth"
+    contain_gps: "GPS"
+    contain_memory_card: "Карта памяти"
+    contain_mp3_player: "MP3"
+    contain_radio: "Радио"
+    contain_camera: "Камера"
+    contain_double_sim_support: "Поддержка двух SIM-карт"

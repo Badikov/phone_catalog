@@ -31,6 +31,8 @@ gem 'jquery-rails'
 
 gem "backbone-on-rails"
 
+gem "i18n-js", "~> 2.1.2"
+
 group :test, :development do
   gem "rspec-rails", "~> 2.9"
   gem "shoulda-matchers", "~> 1.0.0"

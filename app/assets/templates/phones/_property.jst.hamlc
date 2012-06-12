@@ -1,9 +1,9 @@
 - if @phone.get(@property)?
   %tr
-    %td= @property
+    %td= I18n.t("phone.#{@property}")
     - if @subproperty
       %td.value= @phone.get(@property)[@subproperty]
     - else
       %td.value
         = @phone.get(@property)
-        = @suffix if @suffix?
+        = " #{@suffix}" if @suffix?

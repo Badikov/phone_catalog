@@ -1,5 +1,5 @@
 %tr
-  %td= @property
+  %td= I18n.t("phone.#{@property}")
   %td.value
     - if @phone.get(@property)
       %i.icon-ok
