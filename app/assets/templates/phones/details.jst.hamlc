@@ -12,4 +12,4 @@
         - "contain_memory_card", "contain_mp3_player", "contain_radio", "contain_camera", "contain_double_sim_support"]
           != JST["phones/_boolean_property"]({ property: property, phone: @phone })
   .span4{ style: "text-align: center" }
-    %img{src: @phone.image_url()}
+    %img{src: @phone.image_url(), alt: ""}

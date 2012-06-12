@@ -1,8 +1,0 @@
-<a class="thumbnail" href="<%= @phone.path() %>">
-  <div class="img-wrap">
-    <img src="<%= @phone.image_url() %>">
-  </div>
-  <h5>
-    <%= @phone.get('name') %>
-  </h5>
-</a>

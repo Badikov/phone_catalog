@@ -1,3 +1,0 @@
-<a class="thumbnail" href="<%= @vendor.path() %>">
-  <%= @vendor.get("name") %>
-</a>

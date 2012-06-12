@@ -1,0 +1,1 @@
+%a.thumbnail{ href: @vendor.path() }= @vendor.get("name")

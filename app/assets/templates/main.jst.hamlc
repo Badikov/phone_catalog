@@ -1,0 +1,9 @@
+%ul.nav.nav-tabs
+  %li
+    %a{ href: "#vendors-index", "data-toggle" => "tab" }vendors
+  %li
+    %a{ href: "#phones-index", "data-toggle" => "tab" }phones
+  %li
+    %a{ href: "#phone-details", "data-toggle" => "tab" }details
+.tab-content
+  #dummy.tab-pane.fade.active.in

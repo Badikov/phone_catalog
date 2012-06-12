@@ -1,0 +1,4 @@
+%a.thumbnail{ href: @phone.path() }
+  .img-wrap
+    %img{ src: @phone.image_url(), alt: "" }
+  %h5= @phone.get('name')
