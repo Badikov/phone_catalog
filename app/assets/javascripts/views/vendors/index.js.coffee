@@ -21,4 +21,4 @@ class PhoneCatalog.Views.VendorsIndex extends Backbone.View
     @$("#vendors").append(vendorView.render().el)
 
   selectVendor: (vendor) ->
-    Backbone.history.navigate("#{vendor.get('url')}", {trigger: true})
+    Backbone.history.navigate(vendor.path(), {trigger: true})

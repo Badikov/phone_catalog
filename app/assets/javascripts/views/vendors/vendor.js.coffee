@@ -1,6 +1,6 @@
 class PhoneCatalog.Views.Vendor extends Backbone.View
   tagName: "li"
-  className: "span3"
+  className: "span2"
 
   template: JST["vendors/vendor"]
 

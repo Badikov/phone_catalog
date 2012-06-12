@@ -21,4 +21,4 @@ class PhoneCatalog.Views.PhonesIndex extends Backbone.View
     @$("#phones").append(phoneView.render().el)
 
   selectPhone: (phone) ->
-    Backbone.history.navigate("phones/#{phone.get('id')}", {trigger: true})
+    Backbone.history.navigate(phone.path(), {trigger: true})

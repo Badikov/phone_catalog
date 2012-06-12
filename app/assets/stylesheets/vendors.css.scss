@@ -1,18 +1,8 @@
 #vendors li {
   text-align: center;
-
   a {
-    @include border-radius(5px);
-    cursor: pointer;
     text-decoration: none;
-    background-color: #EEE;
     padding-top: 15px;
     padding-bottom: 15px;
-    margin: 5px;
-    border: 1px solid #CCC;
-  }
-
-  a:hover {
-    background-color: #BBB;
   }
 }

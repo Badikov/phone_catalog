@@ -29,7 +29,6 @@ class PhoneCatalog.Views.Main extends Backbone.View
     phones = new PhoneCatalog.Collections.Phones([phone])
     phone.fetch
       success: =>
-        console.log phone
         @detailsView.show()
 
   createVendorsView: ->
