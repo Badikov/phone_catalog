@@ -5,7 +5,6 @@ class PhoneCatalog.Views.VendorsIndex extends PhoneCatalog.Views.FadingView
 
   initialize: ->
     super
-    @collection = new PhoneCatalog.Collections.Vendors()
     @collection.on("reset", @render, @)
     @collection.on("select", @selectVendor, @)
 

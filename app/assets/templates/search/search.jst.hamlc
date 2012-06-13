@@ -3,7 +3,10 @@
 
 .row
   .span3
-    %form.well
+    %form
+      %select{name: "vendor"}
+        - for vendor in @vendors.models
+          %option{value: vendor.get('url')}= vendor.get('name')
       %button.btn{type: "submit"}Find
 
   #results.span9

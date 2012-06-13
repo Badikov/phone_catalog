@@ -5,7 +5,10 @@ class PhoneCatalog.Collections.Phones extends Backbone.Collection
     Backbone.history.options.root + "api/phones"
 
   fetchByVendor: (vendorName, callback) ->
+    @fetchByParams({vendor: vendorName}, callback)
+
+  fetchByParams: (params, callback) ->
     @fetch
-      data: {vendor: vendorName}
+      data: params
       success: ->
         callback() if callback?

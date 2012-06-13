@@ -9,10 +9,10 @@ class PhoneCatalog.Views.Main extends Backbone.View
     @
 
   showVendors: ->
-    @_createVendorsView() unless @vendorsView?
-    @vendorsView.collection.fetch
-      success: =>
-        @_showView(@vendorsView)
+    vendors = PhoneCatalog.Data.Vendors
+    @_createVendorsView(vendors) unless @vendorsView?
+    vendors.fetchIfEmpty =>
+      @_showView(@vendorsView)
 
   showPhones: (vendorName) ->
     @_createPhonesView() unless @phonesView?
@@ -29,11 +29,13 @@ class PhoneCatalog.Views.Main extends Backbone.View
         @_showView(@detailsView)
 
   showSearch: ->
-    @_createSearchView() unless @searchView?
-    @_showView(@searchView)
+    vendors = PhoneCatalog.Data.Vendors
+    vendors.fetchIfEmpty =>
+      @_createSearchView(vendors: vendors) unless @searchView?
+      @_showView(@searchView)
 
-  _createVendorsView: ->
-    @vendorsView = new PhoneCatalog.Views.VendorsIndex()
+  _createVendorsView: (vendors) ->
+    @vendorsView = new PhoneCatalog.Views.VendorsIndex(collection: vendors)
     @$('#vendors').append(@vendorsView.el)
 
   _createPhonesView: ->
@@ -44,8 +46,8 @@ class PhoneCatalog.Views.Main extends Backbone.View
     @detailsView = new PhoneCatalog.Views.PhoneDetails()
     @$('#details').append(@detailsView.el)
 
-  _createSearchView: ->
-    @searchView = new PhoneCatalog.Views.Search()
+  _createSearchView: (options) ->
+    @searchView = new PhoneCatalog.Views.Search(options)
     @$el.append(@searchView.render().el)
 
   _showView: (view) ->

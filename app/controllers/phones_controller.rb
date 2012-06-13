@@ -4,9 +4,9 @@ class PhonesController < ApplicationController
 
   def index
     if params[:vendor]
-      respond_with(Phone.by_vendor_url(params[:vendor]))
+      respond_with(Phone.by_vendor_url(params[:vendor]).as_json(only: [:id, :name, :image]))
     else
-      respond_with(Phone.limit(6))
+      respond_with(Phone.limit(6).as_json(only: [:id, :name, :image]))
     end
   end
 

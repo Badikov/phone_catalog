@@ -1,7 +1,7 @@
 class PhoneCatalog.Routers.Main extends Backbone.Router
 
   routes:
-    '': "index"
+    '': "home"
     'search': "search"
     ':vendor': "phonesByVendor"
     'phones/:phoneId': "phoneDetails"
@@ -11,7 +11,7 @@ class PhoneCatalog.Routers.Main extends Backbone.Router
     @mainView = new PhoneCatalog.Views.Main()
     $('body').append(@mainView.render().el)
 
-  index: ->
+  home: ->
     @mainView.showVendors()
 
   phonesByVendor: (vendorName) ->
