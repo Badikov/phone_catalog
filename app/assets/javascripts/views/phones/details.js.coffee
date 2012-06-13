@@ -1,16 +1,14 @@
-class PhoneCatalog.Views.PhoneDetails extends Backbone.View
+class PhoneCatalog.Views.PhoneDetails extends PhoneCatalog.Views.FadingView
 
-  id: "phone-details"
-
-  className: "tab-pane fade"
+  className: "row"
 
   template: JST["phones/details"]
 
   initialize: ->
-    _.extend this, PhoneCatalog.Utils.BootstrapTab
+    super
 
   render: ->
-    $(@el).html(@template(phone: @model))
+    @$el.html(@template(phone: @model))
     @
 
   setPhone: (phone) ->

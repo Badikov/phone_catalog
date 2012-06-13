@@ -1,44 +1,44 @@
 class PhoneCatalog.Views.Main extends Backbone.View
 
-  id: 'main-tabs'
-  template: JST["main"]
-
   initialize: ->
-    @render()
-    $("#container").append($(@el))
-
-  render: ->
-    $(@el).html(@template())
-    @
+    $("#container").append(@$el)
 
   showVendors: ->
     @createVendorsView() unless @vendorsView?
     @vendorsView.collection.fetch
       success: =>
-        @vendorsView.show()
+        @showView(@vendorsView)
 
   showPhones: (vendorName) ->
     @createPhonesView() unless @phonesView?
     @phonesView.collection.fetchByVendor vendorName, =>
-      @phonesView.show()
+      @showView(@phonesView)
 
   showPhoneDetails: (phoneId) ->
-    @createDetailsView() unless @detailsView
+    @createDetailsView() unless @detailsView?
     phone = new PhoneCatalog.Models.Phone(id: phoneId)
     @detailsView.setPhone(phone)
     phones = new PhoneCatalog.Collections.Phones([phone])
     phone.fetch
       success: =>
-        @detailsView.show()
+        @showView(@detailsView)
 
   createVendorsView: ->
     @vendorsView = new PhoneCatalog.Views.VendorsIndex()
-    @$('.tab-content').append(@vendorsView.el)
+    @$el.append(@vendorsView.el)
 
   createPhonesView: ->
     @phonesView = new PhoneCatalog.Views.PhonesIndex()
-    @$('.tab-content').append(@phonesView.el)
+    @$el.append(@phonesView.el)
 
   createDetailsView: ->
     @detailsView = new PhoneCatalog.Views.PhoneDetails()
-    @$('.tab-content').append(@detailsView.el)
+    @$el.append(@detailsView.el)
+
+  showView: (view) ->
+    if @currentView?
+      @currentView.hide ->
+        view.show()
+    else
+      view.show()
+    @currentView = view

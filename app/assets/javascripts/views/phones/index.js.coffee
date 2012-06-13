@@ -1,18 +1,17 @@
-class PhoneCatalog.Views.PhonesIndex extends Backbone.View
+class PhoneCatalog.Views.PhonesIndex extends PhoneCatalog.Views.FadingView
 
-  id: "phones-index"
-  className: "row tab-pane fade"
+  className: "row"
 
   template: JST['phones/index']
 
   initialize: ->
-    _.extend this, PhoneCatalog.Utils.BootstrapTab
+    super
     @collection = new PhoneCatalog.Collections.Phones()
     @collection.on("reset", @render, @)
     @collection.on("select", @selectPhone, @)
 
   render: ->
-    $(@el).html(@template())
+    @$el.html(@template())
     @collection.each(@appendPhone, @)
     @
 
