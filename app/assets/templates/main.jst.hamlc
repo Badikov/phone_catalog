@@ -1,0 +1,5 @@
+.row
+  #vendors.span12
+.row
+  #phones.span12
+#details

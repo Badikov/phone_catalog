@@ -1,0 +1,9 @@
+.page-header
+  %h1 Search
+
+.row
+  .span3
+    %form.well
+      %button.btn{type: "submit"}Find
+
+  #results.span9

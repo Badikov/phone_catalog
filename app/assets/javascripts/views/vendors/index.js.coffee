@@ -1,8 +1,7 @@
 class PhoneCatalog.Views.VendorsIndex extends PhoneCatalog.Views.FadingView
 
-  className: "row"
-
-  template: JST['vendors/index']
+  tagName: "ul"
+  className: "vendors thumbnails"
 
   initialize: ->
     super
@@ -11,13 +10,13 @@ class PhoneCatalog.Views.VendorsIndex extends PhoneCatalog.Views.FadingView
     @collection.on("select", @selectVendor, @)
 
   render: ->
-    @$el.html(@template())
+    @$el.empty()
     @collection.each(@appendVendor, @)
     @
 
   appendVendor: (vendor) ->
     vendorView = new PhoneCatalog.Views.Vendor(model: vendor, collection: @collection)
-    @$("#vendors").append(vendorView.render().el)
+    @$el.append(vendorView.render().el)
 
   selectVendor: (vendor) ->
     Backbone.history.navigate(vendor.path(), {trigger: true})

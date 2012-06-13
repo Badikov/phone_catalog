@@ -1,7 +1,5 @@
 class PhoneCatalog.Views.PhoneDetails extends PhoneCatalog.Views.FadingView
 
-  className: "row"
-
   template: JST["phones/details"]
 
   initialize: ->

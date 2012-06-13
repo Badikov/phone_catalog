@@ -1,8 +1,7 @@
 class PhoneCatalog.Views.PhonesIndex extends PhoneCatalog.Views.FadingView
 
-  className: "row"
-
-  template: JST['phones/index']
+  tagName: "ul"
+  className: "phones thumbnails"
 
   initialize: ->
     super
@@ -11,13 +10,13 @@ class PhoneCatalog.Views.PhonesIndex extends PhoneCatalog.Views.FadingView
     @collection.on("select", @selectPhone, @)
 
   render: ->
-    @$el.html(@template())
+    @$el.empty()
     @collection.each(@appendPhone, @)
     @
 
   appendPhone: (phone) ->
     phoneView = new PhoneCatalog.Views.Phone(model: phone, collection: @collection)
-    @$("#phones").append(phoneView.render().el)
+    @$el.append(phoneView.render().el)
 
   selectPhone: (phone) ->
     Backbone.history.navigate(phone.path(), {trigger: true})

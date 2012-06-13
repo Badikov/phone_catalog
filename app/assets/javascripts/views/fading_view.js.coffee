@@ -1,7 +1,8 @@
 class PhoneCatalog.Views.FadingView extends Backbone.View
 
-  initialize: ->
-    @$el.hide()
+  initialize: (options) ->
+    unless options?["hidden"] is false
+      @$el.hide()
 
   show: (callback) ->
     @$el.fadeIn ->
