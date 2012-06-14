@@ -1,0 +1,6 @@
+%select{name: @name, id: @name}
+  - if @blank?
+    %option{value: null}
+      = "< #{@blank} >"
+  - for member in @collection
+    %option{value: member.get(@value)}= member.get(@label)

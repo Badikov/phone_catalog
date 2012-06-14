@@ -14,6 +14,7 @@
 //= require i18n/translations
 //
 //= require phone_catalog
+//= require_tree ./base
 //
 //= require_tree ../templates
 //= require_tree ./models

@@ -6,6 +6,11 @@ PhoneCatalog::Application.routes.draw do
 
   scope "api" do
     resources :vendors, only: :index
+    resources :phone_types, only: :index
+    resources :case_types, only: :index
+    resources :platforms, only: :index
+    resources :screen_types, only: :index
+    resources :touch_screen_types, only: :index
     resources :phones, only: [:index, :show]
   end
 

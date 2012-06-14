@@ -1,6 +1,9 @@
 ru:
   inches: "дюймов"
   grams: "грамм"
+  any: "не важно"
+  contain: "есть"
+  not_contain: "нет"
 
   phone:
     vendor: "Производитель"
@@ -20,4 +23,4 @@ ru:
     contain_mp3_player: "MP3"
     contain_radio: "Радио"
     contain_camera: "Камера"
-    contain_double_sim_support: "Поддержка двух SIM-карт"
+    contain_double_sim_support: "Две SIM карты"

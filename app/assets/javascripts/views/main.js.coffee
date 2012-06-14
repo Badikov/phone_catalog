@@ -29,10 +29,23 @@ class PhoneCatalog.Views.Main extends Backbone.View
         @_showView(@detailsView)
 
   showSearch: ->
-    vendors = PhoneCatalog.Data.Vendors
-    vendors.fetchIfEmpty =>
-      @_createSearchView(vendors: vendors) unless @searchView?
-      @_showView(@searchView)
+    options = {
+      vendors: PhoneCatalog.Data.Vendors
+      phone_types: PhoneCatalog.Data.PhoneTypes
+      case_types:  PhoneCatalog.Data.CaseTypes
+      platforms: PhoneCatalog.Data.Platforms
+      screen_types: PhoneCatalog.Data.ScreenTypes
+      touch_screen_types: PhoneCatalog.Data.TouchScreenTypes
+    }
+    options.vendors.fetchIfEmpty =>
+      options.phone_types.fetchIfEmpty =>
+        options.case_types.fetchIfEmpty =>
+          options.platforms.fetchIfEmpty =>
+            options.screen_types.fetchIfEmpty =>
+              options.touch_screen_types.fetchIfEmpty =>
+                unless @searchView?
+                  @_createSearchView options
+                @_showView(@searchView)
 
   _createVendorsView: (vendors) ->
     @vendorsView = new PhoneCatalog.Views.VendorsIndex(collection: vendors)
@@ -48,7 +61,7 @@ class PhoneCatalog.Views.Main extends Backbone.View
 
   _createSearchView: (options) ->
     @searchView = new PhoneCatalog.Views.Search(options)
-    @$el.append(@searchView.render().el)
+    @$("#search").append(@searchView.render().el)
 
   _showView: (view) ->
     if @currentView?

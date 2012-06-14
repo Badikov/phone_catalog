@@ -1,12 +1,27 @@
 .page-header
   %h1 Search
-
 .row
-  .span3
-    %form
-      %select{name: "vendor"}
-        - for vendor in @vendors.models
-          %option{value: vendor.get('url')}= vendor.get('name')
-      %button.btn{type: "submit"}Find
+  #results.span7
 
-  #results.span9
+  .span5
+    %form.form-horizontal
+      - for property in PhoneCatalog.Models.Phone.referenceProperties()
+        - if @options["#{property}s"]?
+          .control-group
+            %label.control-label{for: "#{property}_id"}= I18n.t("phone.#{property}")
+            .controls
+              != @select_tag({name: "#{property}_id", collection: @options["#{property}s"].models, value: "id", label: "name", blank: I18n.t("any")})
+
+      - for property in PhoneCatalog.Models.Phone.booleanProperties()
+        .control-group
+          %label.control-label= I18n.t("phone.#{property}")
+          .controls
+            %label.radio.inline
+              %input{name: property, type: "radio", checked: "checked", value: null}
+              = I18n.t("any")
+            %label.radio.inline
+              %input{name: property, type: "radio", value: "1"}
+              = I18n.t("contain")
+            %label.radio.inline
+              %input{name: property, type: "radio", value: "0"}
+              = I18n.t("not_contain")

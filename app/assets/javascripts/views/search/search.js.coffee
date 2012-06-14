@@ -3,20 +3,24 @@ class PhoneCatalog.Views.Search extends PhoneCatalog.Views.FadingView
   template: JST['search/search']
 
   events:
-    "submit form": "search"
+    "change form select": "search"
+    "change form input:radio": "search"
 
-  initialize: (options) ->
+  initialize: () ->
     super
     @phonesView = new PhoneCatalog.Views.PhonesIndex(hidden: false)
     @phonesView.collection.fetch()
-    @vendors = options.vendors
 
   render: ->
-    @$el.html(@template(vendors: PhoneCatalog.Data.Vendors))
+    @$el.html(@template(options: @options))
     @$('#results').html(@phonesView.el)
     @
 
   search: (event) ->
     event.preventDefault()
-    @phonesView.collection.fetchByParams
-      vendor: @$('select[name="vendor"]').val()
+    params = {}
+    for p in ("#{r}_id" for r in PhoneCatalog.Models.Phone.referenceProperties())
+      params[p] = @$("select[name='#{p}']").val()
+    for p in PhoneCatalog.Models.Phone.booleanProperties()
+      params[p] = @$("input:radio[name='#{p}']:checked").val()
+    @phonesView.collection.fetchByParams params
