@@ -12,7 +12,7 @@ class Phone < ActiveRecord::Base
   end
 
   def self.by_params(params)
-    phones = Phone.limit(6)
+    phones = Phone.scoped
     [:vendor_id, :phone_type_id, :case_type_id, :platform_id,
      :screen_type_id, :touch_screen_type_id].each do |property|
       unless params[property].blank?

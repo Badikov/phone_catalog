@@ -46,6 +46,7 @@ class PhoneCatalog.Views.Main extends Backbone.View
                 unless @searchView?
                   @_createSearchView options
                 @_showView(@searchView)
+                @searchView.search()
 
   _createVendorsView: (vendors) ->
     @vendorsView = new PhoneCatalog.Views.VendorsIndex(collection: vendors)

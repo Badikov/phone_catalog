@@ -1,5 +1,6 @@
 .page-header
   %h1 Search
+#pager.row
 .row
   #results.span7
 

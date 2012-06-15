@@ -1,0 +1,41 @@
+.pagination
+  %ul
+    - if @total_pages > 0
+      - if @page == 1
+        %li.disabled
+          %a
+            &laquo;
+      - else
+        %li
+          %a{href: "#", "data-page" => @page - 1}&laquo;
+
+      - if @total_pages <= 5
+        - for p in [1..@total_pages]
+          != JST["pager/page_number"]({page: p, current_page: @page})
+      - else
+        != JST["pager/page_number"]({page: 1, current_page: @page})
+
+        - if @page in [1, 2, 3, @total_pages - 1, @total_pages]
+          != JST["pager/page_number"]({page: 2, current_page: @page})
+
+        - if @page in [1, 2, @total_pages - 1, @total_pages]
+          != JST['pager/gap']()
+        - else
+          - if @page - 1 > 2
+            != JST['pager/gap']()
+          != JST["pager/page_number"]({page: @page, current_page: @page})
+          - if @total_pages - @page > 2
+            != JST['pager/gap']()
+
+        - if @page in [1, 2, @total_pages - 2, @total_pages - 1, @total_pages]
+          != JST["pager/page_number"]({page: @total_pages - 1, current_page: @page})
+
+        != JST["pager/page_number"]({page: @total_pages, current_page: @page})
+
+      - if @page == @total_pages
+        %li.disabled
+          %a
+            &raquo;
+      - else
+        %li
+          %a{href: "#", "data-page" => @page + 1}&raquo;
