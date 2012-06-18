@@ -2,7 +2,7 @@ class PhoneCatalog.Collections.Phones extends Backbone.Collection
 
   model: PhoneCatalog.Models.Phone
   url: ->
-    Backbone.history.options.root + "api/phones"
+    PhoneCatalog.root + "api/phones"
 
   parse: (response) ->
     @total_pages = response.total_pages

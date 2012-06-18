@@ -2,4 +2,4 @@ class PhoneCatalog.Collections.Vendors extends PhoneCatalog.Collections.LazyColl
 
   model: PhoneCatalog.Models.Vendor
   url: ->
-    Backbone.history.options.root + "api/vendors"
+    PhoneCatalog.root + "api/vendors"

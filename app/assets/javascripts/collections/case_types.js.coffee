@@ -2,4 +2,4 @@ class PhoneCatalog.Collections.CaseTypes extends PhoneCatalog.Collections.LazyCo
 
   model: PhoneCatalog.Models.CaseType
   url: ->
-    Backbone.history.options.root + "api/case_types"
+    PhoneCatalog.root + "api/case_types"

@@ -2,4 +2,4 @@ class PhoneCatalog.Collections.TouchScreenTypes extends PhoneCatalog.Collections
 
   model: PhoneCatalog.Models.TouchScreenType
   url: ->
-    Backbone.history.options.root + "api/touch_screen_types"
+    PhoneCatalog.root + "api/touch_screen_types"

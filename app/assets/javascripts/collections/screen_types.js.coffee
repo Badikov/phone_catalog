@@ -2,4 +2,4 @@ class PhoneCatalog.Collections.ScreenTypes extends PhoneCatalog.Collections.Lazy
 
   model: PhoneCatalog.Models.ScreenType
   url: ->
-    Backbone.history.options.root + "api/screen_types"
+    PhoneCatalog.root + "api/screen_types"

@@ -2,4 +2,4 @@ class PhoneCatalog.Collections.Platforms extends PhoneCatalog.Collections.LazyCo
 
   model: PhoneCatalog.Models.Platform
   url: ->
-    Backbone.history.options.root + "api/platforms"
+    PhoneCatalog.root + "api/platforms"

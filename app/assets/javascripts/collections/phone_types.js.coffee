@@ -2,4 +2,4 @@ class PhoneCatalog.Collections.PhoneTypes extends PhoneCatalog.Collections.LazyC
 
   model: PhoneCatalog.Models.PhoneType
   url: ->
-    Backbone.history.options.root + "api/phone_types"
+    PhoneCatalog.root + "api/phone_types"
