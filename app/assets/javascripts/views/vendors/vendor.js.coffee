@@ -13,4 +13,4 @@ class PhoneCatalog.Views.Vendor extends Backbone.View
 
   selectVendor: (event) ->
     event.preventDefault()
-    @collection.trigger("select", @model)
+    Backbone.history.navigate(@model.path(), {trigger: true})

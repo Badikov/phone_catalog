@@ -7,7 +7,6 @@ class PhoneCatalog.Views.PhonesIndex extends PhoneCatalog.Views.FadingView
     super
     @collection = new PhoneCatalog.Collections.Phones()
     @collection.on("reset", @render, @)
-    @collection.on("select", @selectPhone, @)
 
   render: ->
     if @visible
@@ -24,9 +23,6 @@ class PhoneCatalog.Views.PhonesIndex extends PhoneCatalog.Views.FadingView
   appendPhone: (phone) ->
     phoneView = new PhoneCatalog.Views.Phone(model: phone, collection: @collection)
     @$el.append(phoneView.render().el)
-
-  selectPhone: (phone) ->
-    Backbone.history.navigate(phone.path(), {trigger: true})
 
   changePage: (page) ->
     @$el.fadeOut =>

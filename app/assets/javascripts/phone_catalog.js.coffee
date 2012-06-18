@@ -1,4 +1,3 @@
-
 window.PhoneCatalog =
   Models: {}
   Collections: {}

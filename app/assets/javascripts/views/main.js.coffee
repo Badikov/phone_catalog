@@ -4,6 +4,12 @@ class PhoneCatalog.Views.Main extends Backbone.View
 
   template: JST["main"]
 
+  initialize: (options) ->
+    options.router.on("route:home", @showVendors, @)
+    options.router.on("route:search", @showSearch, @)
+    options.router.on("route:phonesByVendor", @showPhones, @)
+    options.router.on("route:phoneDetails", @showPhoneDetails, @)
+
   render: ->
     @$el.html(@template())
     @
@@ -43,8 +49,7 @@ class PhoneCatalog.Views.Main extends Backbone.View
           options.platforms.fetchIfEmpty =>
             options.screen_types.fetchIfEmpty =>
               options.touch_screen_types.fetchIfEmpty =>
-                unless @searchView?
-                  @_createSearchView options
+                @_createSearchView options unless @searchView?
                 @_showView(@searchView)
                 @searchView.search()
 
