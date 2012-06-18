@@ -9,8 +9,9 @@ class PhoneCatalog.Views.VendorsIndex extends PhoneCatalog.Views.FadingView
     @collection.on("reset", @render, @)
 
   render: ->
-    @$el.html(@template())
-    @collection.each(@appendVendor, @)
+    unless @visible # vendor list is immutable
+      @$el.html(@template())
+      @collection.each(@appendVendor, @)
     @
 
   appendVendor: (vendor) ->
