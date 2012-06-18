@@ -8,6 +8,8 @@ class PhoneCatalog.Routers.Main extends Backbone.Router
 
   initialize: ->
     @.on("all", -> console.log arguments)
+    @navigation = new PhoneCatalog.Views.Navigation(router: @)
+    $('body').append(@navigation.el)
     @mainView = new PhoneCatalog.Views.Main()
     $('body').append(@mainView.render().el)
 

@@ -12,9 +12,12 @@ window.PhoneCatalog =
     PhoneCatalog.Data.Platforms = new PhoneCatalog.Collections.Platforms()
     PhoneCatalog.Data.ScreenTypes = new PhoneCatalog.Collections.ScreenTypes()
     PhoneCatalog.Data.TouchScreenTypes = new PhoneCatalog.Collections.TouchScreenTypes()
+
+    PhoneCatalog.root = $("body").data("root")
+
     new PhoneCatalog.Routers.Main()
-    root = $("body").data("root")
-    Backbone.history.start(pushState: true, root: root)
+
+    Backbone.history.start(pushState: true, root: PhoneCatalog.root)
 
 $(document).ready ->
   PhoneCatalog.init()

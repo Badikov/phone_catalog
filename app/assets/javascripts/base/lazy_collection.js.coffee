@@ -6,4 +6,5 @@ class PhoneCatalog.Collections.LazyCollection extends Backbone.Collection
         success: ->
           callback() if callback?
     else
+      @trigger("reset")
       callback() if callback?

@@ -1,0 +1,7 @@
+.navbar-inner
+  .container
+    %a.brand{href: @routes.home.path}= I18n.t("phone_catalog")
+    %ul.nav
+      - for route_name, route of @routes
+        %li{class: if route.path == @currentPath then 'active'}
+          %a{href: route.path}= I18n.t(route.label)

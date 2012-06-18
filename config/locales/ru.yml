@@ -5,6 +5,11 @@ ru:
   contain: "есть"
   not_contain: "нет"
 
+  phone_catalog: "Каталог телефонов"
+
+  search: "Поиск"
+  vendors: "Производители"
+
   phone:
     vendor: "Производитель"
     phone_type: "Тип"
