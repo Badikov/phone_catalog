@@ -9,10 +9,7 @@ class PhoneCatalog.Collections.Phones extends Backbone.Collection
     @page = response.page
     response.phones
 
-  fetchByVendor: (vendorName, callback) ->
-    @fetchByParams({vendor: vendorName}, callback)
-
-  fetchByParams: (params, callback) ->
+  search: (params, callback) ->
     @search_params = params
     @fetch
       data: params
@@ -22,4 +19,4 @@ class PhoneCatalog.Collections.Phones extends Backbone.Collection
   changePage: (page) ->
     @.trigger("paging", page)
     @search_params["page"] = page
-    @fetchByParams @search_params
+    @search @search_params

@@ -1,0 +1,5 @@
+.row
+  .span12
+    %ul.breadcrumb
+      %li.active= I18n.t("all_vendors")
+    %ul.vendors.thumbnails

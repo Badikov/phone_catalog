@@ -1,5 +1,7 @@
 class PhoneCatalog.Views.Search extends PhoneCatalog.Views.FadingView
 
+  id: "search"
+
   template: JST['search/search']
 
   events:
@@ -15,7 +17,6 @@ class PhoneCatalog.Views.Search extends PhoneCatalog.Views.FadingView
   render: ->
     @$el.html(@template(options: @options))
     @$('#pager').append(@phonesPager.el)
-    @$('#results').empty()
     @$('#results').append(@phonesView.el)
     @
 
@@ -26,4 +27,4 @@ class PhoneCatalog.Views.Search extends PhoneCatalog.Views.FadingView
       params[p] = @$("select[name='#{p}']").val()
     for p in PhoneCatalog.Models.Phone.booleanProperties()
       params[p] = @$("input:radio[name='#{p}']:checked").val()
-    @phonesView.collection.fetchByParams params
+    @phonesView.collection.search params

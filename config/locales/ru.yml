@@ -9,6 +9,7 @@ ru:
 
   search: "Поиск"
   vendors: "Производители"
+  all_vendors: "Все производители"
 
   phone:
     vendor: "Производитель"

@@ -1,17 +1,18 @@
 class PhoneCatalog.Views.VendorsIndex extends PhoneCatalog.Views.FadingView
 
-  tagName: "ul"
-  className: "vendors thumbnails"
+  id: "vendors"
+
+  template: JST["vendors/vendors"]
 
   initialize: ->
     super
     @collection.on("reset", @render, @)
 
   render: ->
-    @$el.empty()
+    @$el.html(@template())
     @collection.each(@appendVendor, @)
     @
 
   appendVendor: (vendor) ->
     vendorView = new PhoneCatalog.Views.Vendor(model: vendor, collection: @collection)
-    @$el.append(vendorView.render().el)
+    @$(".vendors").append(vendorView.render().el)

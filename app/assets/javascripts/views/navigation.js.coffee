@@ -8,6 +8,7 @@ class PhoneCatalog.Views.Navigation extends Backbone.View
     "click a": "navigate"
 
   initialize: (options) ->
+    _.extend(@, PhoneCatalog.Views.Navigable)
     @model = new PhoneCatalog.Models.Navigation()
     @model.on("change", @render, @)
     for route of @model.routes
@@ -16,10 +17,6 @@ class PhoneCatalog.Views.Navigation extends Backbone.View
   render: ->
     @$el.html(@template(routes: @model.routes, currentPath: @model.get("currentPath")))
     @
-
-  navigate: (event) ->
-    event.preventDefault()
-    Backbone.history.navigate($(event.target).attr("href"), {trigger: true})
 
   _makeRoute: (router, route) ->
     callback = =>
