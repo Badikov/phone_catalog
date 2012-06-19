@@ -14,7 +14,11 @@ window.PhoneCatalog =
 
     PhoneCatalog.root = $("body").data("root")
 
-    new PhoneCatalog.Routers.Main()
+    router = new PhoneCatalog.Routers.Main()
+    navigation = new PhoneCatalog.Views.Navigation(el: $(".navbar")[0], router: router)
+    $('body').append(navigation.render().el)
+    mainView = new PhoneCatalog.Views.Main(router: router)
+    $('body').append(mainView.el)
 
     Backbone.history.start(pushState: true, root: PhoneCatalog.root)
 

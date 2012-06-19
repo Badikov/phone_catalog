@@ -6,7 +6,8 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   :javascript
-    I18n.defaultLocale = "#{I18n.default_locale}"
-    I18n.locale = "#{I18n.locale}"
-  %body{"data-root" => root_path}
+    I18n.defaultLocale = "#{I18n.default_locale}";
+    I18n.locale = "#{I18n.locale}";
+  %body{"data-root" => relative_url_root}
+    = render "shared/navigation", current_page: @current_page
     = yield

@@ -1,6 +1,6 @@
 PhoneCatalog::Application.routes.draw do
 
-  get "main/index"
+  get "vendors", to: "main#vendors"
 
   root to: "main#index"
 
