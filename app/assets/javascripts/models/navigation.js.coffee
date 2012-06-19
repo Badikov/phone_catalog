@@ -10,4 +10,7 @@ class PhoneCatalog.Models.Navigation extends Backbone.Model
         label: "search"
 
   go: (route) ->
-    @.set("currentPath", @routes[route].path) if @routes[route]?
+    if @routes[route]?
+      @.set("currentPath", @routes[route].path)
+    else
+      @.set("currentPath", null)

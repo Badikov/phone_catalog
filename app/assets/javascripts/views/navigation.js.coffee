@@ -11,7 +11,7 @@ class PhoneCatalog.Views.Navigation extends Backbone.View
     _.extend(@, PhoneCatalog.Views.Navigable)
     @model = new PhoneCatalog.Models.Navigation()
     @model.on("change", @render, @)
-    for route of @model.routes
+    for path, route of options.router.routes #@model.routes
       @_makeRoute(options.router, route)
 
   render: ->

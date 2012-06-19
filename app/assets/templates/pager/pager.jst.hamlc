@@ -1,6 +1,6 @@
 .pagination
   %ul
-    - if @total_pages > 0
+    - if @total_pages > 1
       - if @page == 1
         %li.disabled
           %a
