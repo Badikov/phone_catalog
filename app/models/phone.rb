@@ -7,10 +7,6 @@ class Phone < ActiveRecord::Base
   belongs_to :screen_type
   belongs_to :touch_screen_type
 
-  def self.by_vendor_url(vendor_url)
-    includes(:vendor).where(vendors: {url: vendor_url})
-  end
-
   def self.by_params(params)
     phones = Phone.scoped
     [:vendor_id, :phone_type_id, :case_type_id, :platform_id,

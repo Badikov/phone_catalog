@@ -16,7 +16,7 @@ class PhoneCatalog.Views.Search extends PhoneCatalog.Views.FadingView
 
   render: ->
     @$el.html(@template(options: @options))
-    @$('#pager').append(@phonesPager.el)
+    @$('#pager-search').append(@phonesPager.el)
     @$('#results').append(@phonesView.el)
     @
 
@@ -27,4 +27,5 @@ class PhoneCatalog.Views.Search extends PhoneCatalog.Views.FadingView
       params[p] = @$("select[name='#{p}']").val()
     for p in PhoneCatalog.Models.Phone.booleanProperties()
       params[p] = @$("input:radio[name='#{p}']:checked").val()
+    params["per_page"] = 6
     @phonesView.collection.search params

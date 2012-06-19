@@ -1,4 +1,5 @@
-#pager.row
+.row
+  #pager-search.span12
 .row
   #results.span7
 

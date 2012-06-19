@@ -1,6 +1,6 @@
 class PhoneCatalog.Views.Pager extends Backbone.View
 
-  className: "span12"
+  className: "pagination"
 
   template: JST["pager/pager"]
 

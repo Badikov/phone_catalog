@@ -4,5 +4,7 @@
       %li
         %a{href: PhoneCatalog.root}= I18n.t("all_vendors")
         %span.divider= "/"
-      %li.active= @vendor.get("name")
-    %ul.phones.thumbnails
+      %li.active= @vendor?.get("name")
+  #pager-by-vendor.span12
+.row
+  #phones-by-vendor.span12
