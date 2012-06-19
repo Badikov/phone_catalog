@@ -1,0 +1,12 @@
+!!!
+%html
+  %head
+    %title PhoneCatalog
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  :javascript
+    I18n.defaultLocale = "#{I18n.default_locale}"
+    I18n.locale = "#{I18n.locale}"
+  %body{"data-root" => root_path}
+    = yield
