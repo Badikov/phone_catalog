@@ -10,4 +10,4 @@ class PhoneCatalog.Models.Phone extends Backbone.Model
     "#{Backbone.history.options.root}img/#{@get('image')}"
 
   path: ->
-    "phones/#{@.get('id')}"
+    PhoneCatalog.root + "phones/#{@.get('id')}"

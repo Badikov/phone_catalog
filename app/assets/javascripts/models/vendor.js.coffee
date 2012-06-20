@@ -1,4 +1,4 @@
 class PhoneCatalog.Models.Vendor extends Backbone.Model
 
   path: ->
-    @.get('url')
+    PhoneCatalog.root + @.get('url')

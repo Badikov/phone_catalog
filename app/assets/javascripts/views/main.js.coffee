@@ -80,5 +80,4 @@ class PhoneCatalog.Views.Main extends Backbone.View
       vendors = PhoneCatalog.Data.Vendors
       vendors.fetchIfEmpty =>
         @vendorsView = new PhoneCatalog.Views.VendorsIndex(el: vendorsEl, collection: vendors, display: true)
-        @vendorsView.setElement(vendorsEl)
         @currentView = @vendorsView

@@ -1,11 +1,9 @@
 PhoneCatalog::Application.routes.draw do
 
-  get "vendors", to: "main#vendors"
-
-  root to: "main#vendors"
+  resources :vendors, only: :index, defaults: {format: :html}
 
   scope "api" do
-    resources :vendors, only: :index
+    resources :vendors, only: :index, defaults: {format: :json}
     resources :phone_types, only: :index
     resources :case_types, only: :index
     resources :platforms, only: :index
@@ -14,7 +12,7 @@ PhoneCatalog::Application.routes.draw do
     resources :phones, only: [:index, :show]
   end
 
-  match "*path", to: "main#index"
+  root to: "vendors#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
