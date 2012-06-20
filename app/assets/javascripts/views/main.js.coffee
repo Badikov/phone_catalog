@@ -3,6 +3,7 @@ class PhoneCatalog.Views.Main extends Backbone.View
   className: "container"
 
   initialize: (options) ->
+    @_attachExistentDOM()
     options.router.on("route:home", @showVendors, @)
     options.router.on("route:search", @showSearch, @)
     options.router.on("route:phonesByVendor", @showPhones, @)
@@ -10,7 +11,9 @@ class PhoneCatalog.Views.Main extends Backbone.View
 
   showVendors: ->
     vendors = PhoneCatalog.Data.Vendors
-    @_createVendorsView(vendors) unless @vendorsView?
+    unless @vendorsView?
+      @vendorsView = new PhoneCatalog.Views.VendorsIndex(collection: vendors)
+      @$el.append(@vendorsView.el)
     vendors.fetchIfEmpty =>
       @_showView(@vendorsView)
 
@@ -19,8 +22,8 @@ class PhoneCatalog.Views.Main extends Backbone.View
     vendors.fetchIfEmpty =>
       vendor = vendors.find (vendor) ->
         vendor.get("url") == vendorName
-      @_createPhonesByVendorView(vendor) unless @phonesView?
-      @phonesByVendorView.search =>
+      @_createPhonesByVendorView(vendor) unless @phonesByVendorView?
+      @phonesByVendorView.search vendor, =>
         @_showView(@phonesByVendorView)
 
   showPhoneDetails: (phoneId) ->
@@ -51,12 +54,8 @@ class PhoneCatalog.Views.Main extends Backbone.View
                 @_showView(@searchView)
                 @searchView.search()
 
-  _createVendorsView: (vendors) ->
-    @vendorsView = new PhoneCatalog.Views.VendorsIndex(collection: vendors)
-    @$el.append(@vendorsView.el)
-
   _createPhonesByVendorView: (vendor) ->
-    @phonesByVendorView = new PhoneCatalog.Views.PhonesByVendor(vendor: vendor)
+    @phonesByVendorView = new PhoneCatalog.Views.PhonesByVendor(vendor: vendor, display: false)
     @$el.append(@phonesByVendorView.render().el)
 
   _createDetailsView: ->
@@ -74,3 +73,12 @@ class PhoneCatalog.Views.Main extends Backbone.View
     else
       view.show()
     @currentView = view
+
+  _attachExistentDOM: ->
+    vendorsEl = @$("#vendors")
+    unless vendorsEl.length is 0
+      vendors = PhoneCatalog.Data.Vendors
+      vendors.fetchIfEmpty =>
+        @vendorsView = new PhoneCatalog.Views.VendorsIndex(el: vendorsEl, collection: vendors, display: true)
+        @vendorsView.setElement(vendorsEl)
+        @currentView = @vendorsView

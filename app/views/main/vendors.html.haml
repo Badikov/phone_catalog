@@ -1,0 +1,9 @@
+#vendors
+  .row
+    .span12
+      %ul.breadcrumb
+        %li.active= t("all_vendors")
+      %ul.thumbnails.vendors
+        - @vendors.each do |vendor|
+          %li.span2{"data-id" => vendor.id}
+            %a{class: "thumbnail", href: "#{root_path}#{vendor.url}"}= vendor.name

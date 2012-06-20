@@ -1,8 +1,9 @@
 .navbar.navbar-fixed-top
-  .container
-    %a.brand{href: relative_url_root}= t("phone_catalog")
-    %ul.nav
-      %li{class: ("active" if @current_page == :vendors)}
-        %a{href: relative_url_root}= I18n.t("vendors")
-      %li{class: ("active" if @current_page == :search)}
-        %a{href: "#{relative_url_root}search"}= I18n.t("search")
+  .navbar-inner
+    .container
+      %a.brand{href: relative_url_root}= t("phone_catalog")
+      %ul.nav
+        %li{class: ("active" if current_page == :vendors)}
+          %a{href: relative_url_root}= I18n.t("vendors")
+        %li{class: ("active" if current_page == :search)}
+          %a{href: "#{relative_url_root}search"}= I18n.t("search")

@@ -2,7 +2,7 @@ PhoneCatalog::Application.routes.draw do
 
   get "vendors", to: "main#vendors"
 
-  root to: "main#index"
+  root to: "main#vendors"
 
   scope "api" do
     resources :vendors, only: :index

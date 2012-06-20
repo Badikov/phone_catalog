@@ -10,4 +10,5 @@
     I18n.locale = "#{I18n.locale}";
   %body{"data-root" => relative_url_root}
     = render "shared/navigation", current_page: @current_page
-    = yield
+    #main.container
+      = yield

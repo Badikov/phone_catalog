@@ -1,0 +1,8 @@
+.row
+  .span12
+    #breadcrumbs-by-vendor
+  .span12
+    #pager-by-vendor
+.row
+  .span12
+    #phones-by-vendor
