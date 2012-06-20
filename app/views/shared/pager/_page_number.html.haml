@@ -1,0 +1,6 @@
+- if page == current_page
+  %li.active
+    %a= page
+- else
+  %li
+    %a{href: "#", "data-page" => page}= page

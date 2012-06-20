@@ -5,7 +5,7 @@ class VendorsController < ApplicationController
     @vendors = Vendor.all
     respond_to do |format|
       format.html
-      format.json{render json: Vendor.all}
+      format.json{render json: @vendors}
     end
   end
 end

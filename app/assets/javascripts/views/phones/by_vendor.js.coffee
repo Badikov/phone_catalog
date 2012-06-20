@@ -11,9 +11,7 @@ class PhoneCatalog.Views.PhonesByVendor extends PhoneCatalog.Views.FadingView
     super
     _.extend(@, PhoneCatalog.Views.Navigable)
     @vendor = options.vendor
-    @phonesView = new PhoneCatalog.Views.PhonesIndex()
-    @phonesPager = new PhoneCatalog.Views.Pager(collection: @phonesView.collection)
-    @breadcrumbsView = new PhoneCatalog.Views.BreadcrumbsByVendor(model: @vendor)
+    @_createSubviews()
 
   render: ->
     @$el.html(@template(vendor: @vendor))
@@ -31,3 +29,30 @@ class PhoneCatalog.Views.PhonesByVendor extends PhoneCatalog.Views.FadingView
       @vendor.set(attrName, attrValue, silent: true)
     @vendor.change()
     @phonesView.collection.search({vendor_id: @vendor.get('id'), per_page: 8}, callback)
+
+  _createSubviews: ->
+    @_createOrAttachPhonesView()
+    @_createOrAttachPager()
+    @_createOrAttachBreadcrumbs()
+
+  _createOrAttachPhonesView: ->
+    phonesViewEl = @$('ul.phones')
+    if phonesViewEl.length is 0
+      @phonesView = new PhoneCatalog.Views.PhonesIndex(collection: new PhoneCatalog.Collections.Phones())
+    else
+      phones = PhoneCatalog.Preloaded.Phones # TODO: is it wrong place?
+      @phonesView = new PhoneCatalog.Views.PhonesIndex(el: phonesViewEl, collection: phones)
+
+  _createOrAttachPager: ->
+    pagerEl = @$('.pagination')
+    if pagerEl.length is 0
+      @phonesPager = new PhoneCatalog.Views.Pager(collection: @phonesView.collection)
+    else
+      @phonesPager = new PhoneCatalog.Views.Pager(el: pagerEl, collection: @phonesView.collection)
+
+  _createOrAttachBreadcrumbs: ->
+    breadcrumbsEl = @$('.breadcrumb')
+    if breadcrumbsEl.length is 0
+      @breadcrumbsView = new PhoneCatalog.Views.BreadcrumbsByVendor(model: @vendor)
+    else
+      @breadcrumbsView = new PhoneCatalog.Views.BreadcrumbsByVendor(el: breadcrumbsEl, model: @vendor)

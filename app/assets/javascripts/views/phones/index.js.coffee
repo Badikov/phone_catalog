@@ -5,7 +5,7 @@ class PhoneCatalog.Views.PhonesIndex extends PhoneCatalog.Views.FadingView
 
   initialize: ->
     super
-    @collection = new PhoneCatalog.Collections.Phones()
+    @_attachExistentDOM()
     @collection.on("reset", @render, @)
 
   render: ->
@@ -24,3 +24,10 @@ class PhoneCatalog.Views.PhonesIndex extends PhoneCatalog.Views.FadingView
   appendPhone: (phone) ->
     phoneView = new PhoneCatalog.Views.Phone(model: phone, collection: @collection)
     @$el.append(phoneView.render().el)
+
+  _attachExistentDOM: ->
+    phones = @collection
+    @$('li').each (phoneElIndex, phoneEl) ->
+      phone_id = $(phoneEl).data("id")
+      phone = phones.get(phone_id)
+      new PhoneCatalog.Views.Phone(el: phoneEl, model: phone)

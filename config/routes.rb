@@ -1,6 +1,19 @@
+class VendorsConstraint
+  def initialize
+    @vendors = Vendor.all.map(&:url)
+  end
+
+  def matches?(request)
+    @vendors.include?(request.params[:vendor_url])
+  end
+end
+
 PhoneCatalog::Application.routes.draw do
 
   resources :vendors, only: :index, defaults: {format: :html}
+  resources :phones, only: :show, defaults: {format: :html}
+
+  get ":vendor_url", to: "phones#index", constraints: VendorsConstraint.new, defaults: {format: :html}
 
   scope "api" do
     resources :vendors, only: :index, defaults: {format: :json}
@@ -9,7 +22,7 @@ PhoneCatalog::Application.routes.draw do
     resources :platforms, only: :index
     resources :screen_types, only: :index
     resources :touch_screen_types, only: :index
-    resources :phones, only: [:index, :show]
+    resources :phones, only: [:index, :show], defaults: {format: :json}
   end
 
   root to: "vendors#index"

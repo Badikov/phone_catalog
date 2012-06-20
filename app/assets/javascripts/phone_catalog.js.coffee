@@ -4,6 +4,7 @@ window.PhoneCatalog =
   Views: {}
   Routers: {}
   Data: {} # for reusable constant data like 'vendors'
+  Preloaded: {} # for preloaded temporary data
   init: ->
     PhoneCatalog.Data.Vendors = new PhoneCatalog.Collections.Vendors()
     PhoneCatalog.Data.PhoneTypes = new PhoneCatalog.Collections.PhoneTypes()

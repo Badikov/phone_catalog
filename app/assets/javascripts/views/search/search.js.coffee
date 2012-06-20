@@ -11,8 +11,9 @@ class PhoneCatalog.Views.Search extends PhoneCatalog.Views.FadingView
 
   initialize: () ->
     super
-    @phonesView = new PhoneCatalog.Views.PhonesIndex(display: true)
-    @phonesPager = new PhoneCatalog.Views.Pager(collection: @phonesView.collection)
+    phones = new PhoneCatalog.Collections.Phones()
+    @phonesView = new PhoneCatalog.Views.PhonesIndex(collection: phones, display: true)
+    @phonesPager = new PhoneCatalog.Views.Pager(collection: phones)
 
   render: ->
     @$el.html(@template(options: @options))
