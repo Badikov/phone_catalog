@@ -11,10 +11,11 @@ class PhoneCatalog.Views.Pager extends Backbone.View
     @collection.on('reset', @render, @)
 
   render: ->
-    @$el.html(@template(total_pages: @collection.total_pages, page: @collection.page))
+    @$el.html(@template(total_pages: @collection.total_pages, page: @collection.page, pathPrefix: @options.pathPrefix))
     @
 
   changePage: (event) ->
     event.preventDefault()
     page = $(event.target).data("page")
     @collection.changePage(page)
+    Backbone.history.navigate("#{@options.pathPrefix}page#{page}")

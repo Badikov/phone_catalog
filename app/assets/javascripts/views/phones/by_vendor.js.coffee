@@ -46,9 +46,9 @@ class PhoneCatalog.Views.PhonesByVendor extends PhoneCatalog.Views.FadingView
   _createOrAttachPager: ->
     pagerEl = @$('.pagination')
     if pagerEl.length is 0
-      @phonesPager = new PhoneCatalog.Views.Pager(collection: @phonesView.collection)
+      @phonesPager = new PhoneCatalog.Views.Pager(collection: @phonesView.collection, pathPrefix: "#{@vendor.get('url')}/")
     else
-      @phonesPager = new PhoneCatalog.Views.Pager(el: pagerEl, collection: @phonesView.collection)
+      @phonesPager = new PhoneCatalog.Views.Pager(el: pagerEl, collection: @phonesView.collection, pathPrefix: "#{@vendor.get('url')}/")
 
   _createOrAttachBreadcrumbs: ->
     breadcrumbsEl = @$('.breadcrumb')

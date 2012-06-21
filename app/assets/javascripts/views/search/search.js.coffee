@@ -5,15 +5,15 @@ class PhoneCatalog.Views.Search extends PhoneCatalog.Views.FadingView
   template: JST['search/search']
 
   events:
-    "submit form": "search"
-    "change form select": "search"
-    "change form input:radio": "search"
+    "submit form": "_doSearch"
+    "change form select": "_doSearch"
+    "change form input:radio": "_doSearch"
 
   initialize: () ->
     super
     phones = new PhoneCatalog.Collections.Phones()
     @phonesView = new PhoneCatalog.Views.PhonesIndex(collection: phones, display: true)
-    @phonesPager = new PhoneCatalog.Views.Pager(collection: phones)
+    @phonesPager = new PhoneCatalog.Views.Pager(collection: phones, pathPrefix: "search/")
 
   render: ->
     @$el.html(@template(options: @options))
@@ -21,12 +21,15 @@ class PhoneCatalog.Views.Search extends PhoneCatalog.Views.FadingView
     @$('#results').append(@phonesView.el)
     @
 
-  search: (event) ->
-    event?.preventDefault()
-    params = {}
+  search: (page) ->
+    params = {page: page}
     for p in ("#{r}_id" for r in PhoneCatalog.Models.Phone.referenceProperties())
       params[p] = @$("select[name='#{p}']").val()
     for p in PhoneCatalog.Models.Phone.booleanProperties()
       params[p] = @$("input:radio[name='#{p}']:checked").val()
     params["per_page"] = 6
     @phonesView.collection.search params
+
+  _doSearch: (event) ->
+    event.preventDefault()
+    @search()

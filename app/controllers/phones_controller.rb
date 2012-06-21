@@ -9,7 +9,7 @@ class PhonesController < ApplicationController
         vendor_url = params[:vendor_url]
         @phones = Phone.by_vendor_url(vendor_url)
         @total_pages = get_total_pages(@phones.count, per_page)
-        @phones = @phones.limit(per_page)
+        @phones = @phones.limit(per_page).offset((@page - 1) * per_page)
         @vendor = Vendor.where(url: vendor_url).first
       end
       format.json do

@@ -39,7 +39,7 @@ class PhoneCatalog.Views.Main extends Backbone.View
       success: =>
         @_showView(@detailsView)
 
-  showSearch: ->
+  showSearch: (page) ->
     options = {
       vendors: PhoneCatalog.Data.Vendors
       phone_types: PhoneCatalog.Data.PhoneTypes
@@ -56,7 +56,7 @@ class PhoneCatalog.Views.Main extends Backbone.View
               options.touch_screen_types.fetchIfEmpty =>
                 @_createSearchView options unless @searchView?
                 @_showView(@searchView)
-                @searchView.search()
+                @searchView.search(page)
 
   _createSearchView: (options) ->
     options["display"] = false
