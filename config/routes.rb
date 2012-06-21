@@ -1,6 +1,9 @@
 class VendorsConstraint
   def initialize
-    @vendors = Vendor.all.map(&:url)
+    @vendors = []
+    if ActiveRecord::Base.connection.table_exists? 'vendors'
+      @vendors = Vendor.all.map(&:url)
+    end
   end
 
   def matches?(request)
