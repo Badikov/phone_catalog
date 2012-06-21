@@ -2,4 +2,6 @@ class PhoneCatalog.Views.Navigable
 
   @navigate: (event) ->
     event.preventDefault()
-    Backbone.history.navigate($(event.target).attr("href"), {trigger: true})
+    url = $(event.target).attr("href")
+    url = url[PhoneCatalog.root.length..url.length] if url.indexOf(PhoneCatalog.root) == 0
+    Backbone.history.navigate(url, {trigger: true})

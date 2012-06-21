@@ -1,9 +1,9 @@
 .navbar.navbar-fixed-top
   .navbar-inner
     .container
-      %a.brand{href: "/"}= t("phone_catalog")
+      %a.brand{href: root_path}= t("phone_catalog")
       %ul.nav
         %li{class: ("active" if current_page == :vendors)}
-          %a{href: "/"}= I18n.t("vendors")
+          %a{href: root_path}= I18n.t("vendors")
         %li{class: ("active" if current_page == :search)}
-          %a{href: "/search"}= I18n.t("search")
+          %a{href: "#{root_path}search"}= I18n.t("search")
