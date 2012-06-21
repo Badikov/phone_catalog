@@ -29,7 +29,9 @@ class PhoneCatalog.Views.Main extends Backbone.View
         @_showView(@phonesByVendorView)
 
   showPhoneDetails: (phoneId) ->
-    @_createDetailsView() unless @detailsView?
+    unless @detailsView?
+      @detailsView = new PhoneCatalog.Views.PhoneDetails(display: false)
+      @$el.append(@detailsView.el)
     phone = new PhoneCatalog.Models.Phone(id: phoneId)
     @detailsView.setPhone(phone)
     phones = new PhoneCatalog.Collections.Phones([phone])
@@ -56,10 +58,6 @@ class PhoneCatalog.Views.Main extends Backbone.View
                 @_showView(@searchView)
                 @searchView.search()
 
-  _createDetailsView: ->
-    @detailsView = new PhoneCatalog.Views.PhoneDetails(display: false)
-    @$el.append(@detailsView.el)
-
   _createSearchView: (options) ->
     options["display"] = false
     @searchView = new PhoneCatalog.Views.Search(options)
@@ -76,6 +74,7 @@ class PhoneCatalog.Views.Main extends Backbone.View
   _attachExistentDOM: ->
     @_attachVendorsDOM()
     @_attachPhonesDOM()
+    @_attachDetailsDOM()
 
   _attachVendorsDOM: ->
     vendorsEl = @$("#vendors")
@@ -95,3 +94,9 @@ class PhoneCatalog.Views.Main extends Backbone.View
           vendor.get("url") == vendorName
         @phonesByVendorView = new PhoneCatalog.Views.PhonesByVendor(el: phonesEl, vendor: vendor)
         @currentView = @phonesByVendorView
+
+  _attachDetailsDOM: ->
+    detailsEl = @$("#details")
+    unless detailsEl.length is 0
+      @detailsView = new PhoneCatalog.Views.PhoneDetails(el: detailsEl)
+      @currentView = @detailsView

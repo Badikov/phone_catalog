@@ -1,0 +1,39 @@
+#details
+  %ul.breadcrumb
+    %li
+      = link_to t("all_vendors"), root_path
+      %span.divider= "/"
+    %li
+      = link_to @phone.vendor.name, root_path + @phone.vendor.url
+      %span.divider= "/"
+    %li.active= @phone.name
+  .page-header
+    %h1= @phone.name
+
+  .row
+    .span8
+      %table.table.table-condensed
+        %tbody
+          - [:vendor, :phone_type, :case_type, :platform, :screen_type, :touch_screen_type].each do |property|
+            - if @phone.try(property)
+              %tr
+                %td= t("phone.#{property.to_s}")
+                %td.value= @phone.try(property).name
+          - unless @phone.screen_size.blank?
+            %tr
+              %td= t("phone.screen_size")
+              %td.value= "#{@phone.screen_size} #{t("inches")}"
+          - unless @phone.weight.blank?
+            %tr
+              %td= t("phone.weight")
+              %td.value= "#{@phone.weight} #{t("grams")}"
+          - [:contain_touch_screen, :contain_3g, :contain_wifi, :contain_bluetooth,
+              :contain_gps, :contain_memory_card, :contain_mp3_player, :contain_radio,
+              :contain_camera, :contain_double_sim_support].each do |property|
+            %tr
+              %td= t("phone.#{property.to_s}")
+              %td.value
+                %i{class: @phone.try(property) ? "icon-ok" : "icon-remove"}
+
+    .span4{style: "text-align: center"}
+      %img{src: "#{root_path}img/#{@phone.image}"}
