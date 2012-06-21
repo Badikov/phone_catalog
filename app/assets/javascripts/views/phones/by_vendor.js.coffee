@@ -24,11 +24,11 @@ class PhoneCatalog.Views.PhonesByVendor extends PhoneCatalog.Views.FadingView
     phoneView = new PhoneCatalog.Views.Phone(model: phone, collection: @collection)
     @$('.phones').append(phoneView.el)
 
-  search: (vendor, callback) ->
+  search: (vendor, page, callback) ->
     for attrName, attrValue of vendor.attributes
       @vendor.set(attrName, attrValue, silent: true)
     @vendor.change()
-    @phonesView.collection.search({vendor_id: @vendor.get('id'), per_page: 8}, callback)
+    @phonesView.collection.search({vendor_id: @vendor.get('id'), per_page: 8, page: (if page? then page else 1)}, callback)
 
   _createSubviews: ->
     @_createOrAttachPhonesView()

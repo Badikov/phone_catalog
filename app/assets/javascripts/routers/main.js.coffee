@@ -4,6 +4,7 @@ class PhoneCatalog.Routers.Main extends Backbone.Router
     '': "home"
     'search': "search"
     ':vendor': "phonesByVendor"
+    ':vendor/page:page': "phonesByVendor"
     'phones/:phoneId': "phoneDetails"
 
   initialize: ->

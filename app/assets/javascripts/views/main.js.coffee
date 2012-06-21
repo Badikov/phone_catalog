@@ -17,7 +17,7 @@ class PhoneCatalog.Views.Main extends Backbone.View
     vendors.fetchIfEmpty =>
       @_showView(@vendorsView)
 
-  showPhones: (vendorName) ->
+  showPhones: (vendorName, page) ->
     vendors = PhoneCatalog.Data.Vendors
     vendors.fetchIfEmpty =>
       vendor = vendors.find (vendor) ->
@@ -25,7 +25,7 @@ class PhoneCatalog.Views.Main extends Backbone.View
       unless @phonesByVendorView?
         @phonesByVendorView = new PhoneCatalog.Views.PhonesByVendor(vendor: vendor, display: false)
         @$el.append(@phonesByVendorView.render().el)
-      @phonesByVendorView.search vendor, =>
+      @phonesByVendorView.search vendor, page, =>
         @_showView(@phonesByVendorView)
 
   showPhoneDetails: (phoneId) ->
