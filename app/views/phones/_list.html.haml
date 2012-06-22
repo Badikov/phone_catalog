@@ -1,0 +1,7 @@
+%ul.phones.thumbnails
+  - phones.each do |phone|
+    %li.span3{"data-id" => phone.id}
+      = link_to phone_path(phone), class: "thumbnail" do
+        .img-wrap
+          %img{src: "#{root_path}img/#{phone.image}", alt: ""}
+        %h5= phone.name

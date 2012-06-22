@@ -17,8 +17,8 @@ class PhoneCatalog.Views.Search extends PhoneCatalog.Views.FadingView
 
   render: ->
     @$el.html(@template(options: @options))
-    @$('#pager-search').append(@phonesPager.el)
-    @$('#results').append(@phonesView.el)
+    @$('#pager-search').replaceWith(@phonesPager.el)
+    @$('#results').replaceWith(@phonesView.el)
     @
 
   search: (page) ->

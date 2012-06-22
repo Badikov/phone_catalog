@@ -1,0 +1,33 @@
+#search
+  .row
+    .span12
+      = render "shared/pager/pager", path_prefix: "search/"
+  .row
+    .span7
+      = render "list", phones: @phones
+    .span5
+      = form_tag "search/page#{@page}", method: :get, class: "form-horizontal" do
+        - {"vendor" => Vendor.all, "phone_type" => PhoneType.all, "case_type" => CaseType.all,
+            "platform" => Platform.all, "screen_type" => ScreenType.all,
+            "touch_screen_type" => TouchScreenType.all}.each do |property, values|
+          .control-group
+            = label_tag "#{property}_id", t("phone.#{property}"), class: "control-label"
+            .controls
+              = select_tag "#{property}_id", options_for_select(values.collect{|v| [v.name, v.id]}. |
+                unshift(["< #{t('any')} >", ""])) |
+
+        - ["contain_touch_screen", "contain_3g", "contain_wifi", "contain_bluetooth", "contain_gps",
+              "contain_memory_card", "contain_mp3_player", "contain_radio", "contain_camera",
+              "contain_double_sim_support"].each do |property|
+          .control-group
+            = label_tag nil, t("phone.#{property}"), class: "control-label"
+            .controls
+              = label_tag nil, class: "inline radio" do
+                = radio_button_tag property, "", true
+                = t("any")
+              = label_tag nil, class: "inline radio" do
+                = radio_button_tag property, "1"
+                = t("contain")
+              = label_tag nil, class: "inline radio" do
+                = radio_button_tag property, "0"
+                = t("not_contain")

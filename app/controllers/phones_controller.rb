@@ -1,25 +1,36 @@
 class PhonesController < ApplicationController
 
   def index
-    @page = params[:page] ? params[:page].to_i : 1
-    @page = 1 if @page == 0
+    @page = get_page
+    request_format = params[:format].blank? ? :html : params[:format]
+    if request_format == :html
+      per_page = 8
+      vendor_url = params[:vendor_url]
+      @vendor = Vendor.where(url: vendor_url).first
+      @phones = Phone.by_vendor_url(vendor_url)
+    elsif request_format == :json
+      per_page = params[:per_page] ? params[:per_page].to_i : 6
+      per_page = 6 if per_page == 0
+      @phones = Phone.by_params(params)
+    end
+    @total_pages = get_total_pages(@phones.count, per_page)
+    @phones = @phones.limit(per_page).offset((@page - 1) * per_page)
     respond_to do |format|
-      format.html do
-        per_page = 8
-        vendor_url = params[:vendor_url]
-        @phones = Phone.by_vendor_url(vendor_url)
-        @total_pages = get_total_pages(@phones.count, per_page)
-        @phones = @phones.limit(per_page).offset((@page - 1) * per_page)
-        @vendor = Vendor.where(url: vendor_url).first
-      end
+      format.html
       format.json do
-        per_page = params[:per_page] ? params[:per_page].to_i : 6
-        per_page = 6 if per_page == 0
-        phones = Phone.by_params(params)
-        total_pages = get_total_pages(phones.count, per_page)
-        phones = phones.limit(per_page).offset((@page - 1) * per_page)
-        render json: {total_pages: total_pages, page: @page, phones: phones.as_json(only: [:id, :name, :image])}
+        render json: {total_pages: @total_pages, page: @page, phones: @phones.as_json(only: [:id, :name, :image])}
       end
+    end
+  end
+
+  def search
+    per_page = 6
+    @page = get_page
+    @phones = Phone.by_params(params)
+    @total_pages = get_total_pages(@phones.count, per_page)
+    @phones = @phones.limit(per_page).offset((@page - 1) * per_page)
+    respond_to do |format|
+      format.html
     end
   end
 
@@ -38,5 +49,11 @@ class PhonesController < ApplicationController
 
   def get_total_pages(count, per_page)
     count / per_page + ((count % per_page) > 0 ? 1 : 0)
+  end
+
+  def get_page
+    page = params[:page] ? params[:page].to_i : 1
+    page = 1 if page == 0
+    page
   end
 end

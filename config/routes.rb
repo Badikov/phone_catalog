@@ -16,6 +16,8 @@ PhoneCatalog::Application.routes.draw do
   resources :vendors, only: :index, defaults: {format: :html}
   resources :phones, only: :show, defaults: {format: :html}
 
+  get "search", to: "phones#search", defaults: {format: :html}
+  get "search/page:page", to: "phones#search", defaults: {format: :html}
   get ":vendor_url(/page:page)", to: "phones#index", constraints: VendorsConstraint.new, defaults: {format: :html}
 
   scope "api" do

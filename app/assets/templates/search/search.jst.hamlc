@@ -1,7 +1,9 @@
 .row
-  #pager-search.span12
+  .span12
+    #pager-search
 .row
-  #results.span7
+  .span7
+    #results
 
   .span5
     %form.form-horizontal
