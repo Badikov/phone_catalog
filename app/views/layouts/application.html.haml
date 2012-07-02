@@ -8,6 +8,18 @@
   :javascript
     I18n.defaultLocale = "#{I18n.default_locale}";
     I18n.locale = "#{I18n.locale}";
+    PhoneCatalog.Data.Vendors = new PhoneCatalog.Collections.Vendors();
+    PhoneCatalog.Data.Vendors.reset(#{Vendor.all.to_json});
+    PhoneCatalog.Data.PhoneTypes = new PhoneCatalog.Collections.PhoneTypes();
+    PhoneCatalog.Data.PhoneTypes.reset(#{PhoneType.all.to_json});
+    PhoneCatalog.Data.CaseTypes = new PhoneCatalog.Collections.CaseTypes();
+    PhoneCatalog.Data.CaseTypes.reset(#{CaseType.all.to_json});
+    PhoneCatalog.Data.Platforms = new PhoneCatalog.Collections.Platforms();
+    PhoneCatalog.Data.Platforms.reset(#{Platform.all.to_json});
+    PhoneCatalog.Data.ScreenTypes = new PhoneCatalog.Collections.ScreenTypes();
+    PhoneCatalog.Data.ScreenTypes.reset(#{ScreenType.all.to_json});
+    PhoneCatalog.Data.TouchScreenTypes = new PhoneCatalog.Collections.TouchScreenTypes();
+    PhoneCatalog.Data.TouchScreenTypes.reset(#{TouchScreenType.all.to_json});
   %body{"data-root" => root_path}
     = render "shared/navigation", current_page: @current_page
     #main.container

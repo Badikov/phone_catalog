@@ -6,13 +6,6 @@ window.PhoneCatalog =
   Data: {} # for reusable constant data like 'vendors'
   Preloaded: {} # for preloaded temporary data
   init: ->
-    PhoneCatalog.Data.Vendors = new PhoneCatalog.Collections.Vendors()
-    PhoneCatalog.Data.PhoneTypes = new PhoneCatalog.Collections.PhoneTypes()
-    PhoneCatalog.Data.CaseTypes = new PhoneCatalog.Collections.CaseTypes()
-    PhoneCatalog.Data.Platforms = new PhoneCatalog.Collections.Platforms()
-    PhoneCatalog.Data.ScreenTypes = new PhoneCatalog.Collections.ScreenTypes()
-    PhoneCatalog.Data.TouchScreenTypes = new PhoneCatalog.Collections.TouchScreenTypes()
-
     PhoneCatalog.root = $("body").data("root")
 
     router = new PhoneCatalog.Routers.Main()
