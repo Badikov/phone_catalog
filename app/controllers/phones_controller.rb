@@ -24,6 +24,7 @@ class PhonesController < ApplicationController
   end
 
   def search
+    @current_page = :search
     per_page = 6
     @page = get_page
     @phones = Phone.by_params(params)

@@ -3,4 +3,4 @@
     %a= page
 - else
   %li
-    %a{href: "#{root_path}#{prefix}page#{page}", "data-page" => page}= page
+    = link_to_page(page, "#{page}", prefix)

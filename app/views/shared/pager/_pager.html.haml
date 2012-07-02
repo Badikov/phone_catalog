@@ -7,8 +7,7 @@
             &laquo;
       - else
         %li
-          %a{href: "#{root_path}#{path_prefix}page#{@page - 1}", "data-page" => @page - 1}
-            &laquo;
+          = link_to_page(@page - 1, "&laquo;", path_prefix)
 
       - if @total_pages <= 5
         - (1..@total_pages).each do |p|
@@ -39,5 +38,4 @@
             &raquo;
       - else
         %li
-          %a{href: "#{root_path}#{path_prefix}page#{@page + 1}", "data-page" => @page + 1}
-            &raquo;
+          = link_to_page(@page + 1, "&raquo;", path_prefix)
