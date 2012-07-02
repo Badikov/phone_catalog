@@ -11,9 +11,7 @@ class PhoneCatalog.Views.Search extends PhoneCatalog.Views.FadingView
 
   initialize: () ->
     super
-    phones = new PhoneCatalog.Collections.Phones()
-    @phonesView = new PhoneCatalog.Views.PhonesIndex(collection: phones, display: true)
-    @phonesPager = new PhoneCatalog.Views.Pager(collection: phones, pathPrefix: "search/")
+    @_createSubviews()
 
   render: ->
     @$el.html(@template(options: @options))
@@ -33,3 +31,22 @@ class PhoneCatalog.Views.Search extends PhoneCatalog.Views.FadingView
   _doSearch: (event) ->
     event.preventDefault()
     @search()
+
+  _createSubviews: ->
+    @_createOrAttachPhonesView()
+    @_createOrAttachPager()
+
+  _createOrAttachPhonesView: ->
+    phonesViewEl = @$('ul.phones')
+    if phonesViewEl.length is 0
+      @phonesView = new PhoneCatalog.Views.PhonesIndex(collection: new PhoneCatalog.Collections.Phones())
+    else
+      phones = PhoneCatalog.Preloaded.Phones # TODO: is it wrong place?
+      @phonesView = new PhoneCatalog.Views.PhonesIndex(el: phonesViewEl, collection: phones)
+
+  _createOrAttachPager: ->
+    pagerEl = @$('.pagination')
+    if pagerEl.length is 0
+      @phonesPager = new PhoneCatalog.Views.Pager(collection: @phonesView.collection, pathPrefix: "search/")
+    else
+      @phonesPager = new PhoneCatalog.Views.Pager(el: pagerEl, collection: @phonesView.collection, pathPrefix: "search/")

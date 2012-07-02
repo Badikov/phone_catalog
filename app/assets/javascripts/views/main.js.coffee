@@ -47,14 +47,12 @@ class PhoneCatalog.Views.Main extends Backbone.View
       screen_types: PhoneCatalog.Data.ScreenTypes
       touch_screen_types: PhoneCatalog.Data.TouchScreenTypes
     }
-    @_createSearchView options unless @searchView?
+    unless @searchView?
+      options["display"] = false
+      @searchView = new PhoneCatalog.Views.Search(options)
+      @$el.append(@searchView.render().el)
     @_showView(@searchView)
     @searchView.search(page)
-
-  _createSearchView: (options) ->
-    options["display"] = false
-    @searchView = new PhoneCatalog.Views.Search(options)
-    @$el.append(@searchView.render().el)
 
   _showView: (view) ->
     if @currentView?
@@ -68,6 +66,7 @@ class PhoneCatalog.Views.Main extends Backbone.View
     @_attachVendorsDOM()
     @_attachPhonesDOM()
     @_attachDetailsDOM()
+    @_attachSearchDOM()
 
   _attachVendorsDOM: ->
     vendorsEl = @$("#vendors")
@@ -91,3 +90,9 @@ class PhoneCatalog.Views.Main extends Backbone.View
     unless detailsEl.length is 0
       @detailsView = new PhoneCatalog.Views.PhoneDetails(el: detailsEl)
       @currentView = @detailsView
+
+  _attachSearchDOM: ->
+    searchEl = @$("#search")
+    unless searchEl.length is 0
+      @searchView = new PhoneCatalog.Views.Search(el: searchEl)
+      @currentView = @searchView

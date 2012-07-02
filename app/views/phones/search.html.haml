@@ -31,3 +31,8 @@
               = label_tag nil, class: "inline radio" do
                 = radio_button_tag property, "0"
                 = t("not_contain")
+
+:javascript
+  var phones = new PhoneCatalog.Collections.Phones({per_page: 6});
+  phones.reset(#{@phones.to_json});
+  PhoneCatalog.Preloaded.Phones = phones;
