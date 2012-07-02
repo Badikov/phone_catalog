@@ -13,20 +13,19 @@ class PhoneCatalog.Views.Main extends Backbone.View
     vendors = PhoneCatalog.Data.Vendors
     unless @vendorsView?
       @vendorsView = new PhoneCatalog.Views.VendorsIndex(collection: vendors, display: false)
-      @$el.append(@vendorsView.el)
-    vendors.fetchIfEmpty =>
-      @_showView(@vendorsView)
+      @$el.append(@vendorsView.render().el)
+
+    @_showView(@vendorsView)
 
   showPhones: (vendorName, page) ->
     vendors = PhoneCatalog.Data.Vendors
-    vendors.fetchIfEmpty =>
-      vendor = vendors.find (vendor) ->
-        vendor.get("url") == vendorName
-      unless @phonesByVendorView?
-        @phonesByVendorView = new PhoneCatalog.Views.PhonesByVendor(vendor: vendor, display: false)
-        @$el.append(@phonesByVendorView.render().el)
-      @phonesByVendorView.search vendor, page, =>
-        @_showView(@phonesByVendorView)
+    vendor = vendors.find (vendor) ->
+      vendor.get("url") == vendorName
+    unless @phonesByVendorView?
+      @phonesByVendorView = new PhoneCatalog.Views.PhonesByVendor(vendor: vendor, display: false)
+      @$el.append(@phonesByVendorView.render().el)
+    @phonesByVendorView.search vendor, page, =>
+      @_showView(@phonesByVendorView)
 
   showPhoneDetails: (phoneId) ->
     unless @detailsView?
@@ -48,15 +47,9 @@ class PhoneCatalog.Views.Main extends Backbone.View
       screen_types: PhoneCatalog.Data.ScreenTypes
       touch_screen_types: PhoneCatalog.Data.TouchScreenTypes
     }
-    options.vendors.fetchIfEmpty =>
-      options.phone_types.fetchIfEmpty =>
-        options.case_types.fetchIfEmpty =>
-          options.platforms.fetchIfEmpty =>
-            options.screen_types.fetchIfEmpty =>
-              options.touch_screen_types.fetchIfEmpty =>
-                @_createSearchView options unless @searchView?
-                @_showView(@searchView)
-                @searchView.search(page)
+    @_createSearchView options unless @searchView?
+    @_showView(@searchView)
+    @searchView.search(page)
 
   _createSearchView: (options) ->
     options["display"] = false
@@ -80,20 +73,18 @@ class PhoneCatalog.Views.Main extends Backbone.View
     vendorsEl = @$("#vendors")
     unless vendorsEl.length is 0
       vendors = PhoneCatalog.Data.Vendors
-      vendors.fetchIfEmpty =>
-        @vendorsView = new PhoneCatalog.Views.VendorsIndex(el: vendorsEl, collection: vendors)
-        @currentView = @vendorsView
+      @vendorsView = new PhoneCatalog.Views.VendorsIndex(el: vendorsEl, collection: vendors)
+      @currentView = @vendorsView
 
   _attachPhonesDOM: ->
     phonesEl = @$("#phones")
     unless phonesEl.length is 0
       vendorName = phonesEl.data("vendor")
       vendors = PhoneCatalog.Data.Vendors
-      vendors.fetchIfEmpty =>
-        vendor = vendors.find (vendor) ->
-          vendor.get("url") == vendorName
-        @phonesByVendorView = new PhoneCatalog.Views.PhonesByVendor(el: phonesEl, vendor: vendor)
-        @currentView = @phonesByVendorView
+      vendor = vendors.find (vendor) ->
+        vendor.get("url") == vendorName
+      @phonesByVendorView = new PhoneCatalog.Views.PhonesByVendor(el: phonesEl, vendor: vendor)
+      @currentView = @phonesByVendorView
 
   _attachDetailsDOM: ->
     detailsEl = @$("#details")

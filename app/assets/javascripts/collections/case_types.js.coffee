@@ -1,4 +1,4 @@
-class PhoneCatalog.Collections.CaseTypes extends PhoneCatalog.Collections.LazyCollection
+class PhoneCatalog.Collections.CaseTypes extends Backbone.Collection
 
   model: PhoneCatalog.Models.CaseType
   url: ->

@@ -1,4 +1,4 @@
-class PhoneCatalog.Collections.TouchScreenTypes extends PhoneCatalog.Collections.LazyCollection
+class PhoneCatalog.Collections.TouchScreenTypes extends Backbone.Collection
 
   model: PhoneCatalog.Models.TouchScreenType
   url: ->

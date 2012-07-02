@@ -1,4 +1,4 @@
-class PhoneCatalog.Collections.ScreenTypes extends PhoneCatalog.Collections.LazyCollection
+class PhoneCatalog.Collections.ScreenTypes extends Backbone.Collection
 
   model: PhoneCatalog.Models.ScreenType
   url: ->

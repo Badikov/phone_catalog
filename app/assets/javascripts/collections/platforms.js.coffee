@@ -1,4 +1,4 @@
-class PhoneCatalog.Collections.Platforms extends PhoneCatalog.Collections.LazyCollection
+class PhoneCatalog.Collections.Platforms extends Backbone.Collection
 
   model: PhoneCatalog.Models.Platform
   url: ->

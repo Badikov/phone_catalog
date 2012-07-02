@@ -1,4 +1,4 @@
-class PhoneCatalog.Collections.Vendors extends PhoneCatalog.Collections.LazyCollection
+class PhoneCatalog.Collections.Vendors extends Backbone.Collection
 
   model: PhoneCatalog.Models.Vendor
   url: ->

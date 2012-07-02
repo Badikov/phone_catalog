@@ -1,4 +1,4 @@
-class PhoneCatalog.Collections.PhoneTypes extends PhoneCatalog.Collections.LazyCollection
+class PhoneCatalog.Collections.PhoneTypes extends Backbone.Collection
 
   model: PhoneCatalog.Models.PhoneType
   url: ->
