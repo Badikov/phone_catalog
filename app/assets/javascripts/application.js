@@ -9,6 +9,7 @@
 //= require bootstrap
 //= require underscore
 //= require backbone
+//= require backbone.queryparams
 //= require hamlcoffee
 //= require i18n
 //= require i18n/translations

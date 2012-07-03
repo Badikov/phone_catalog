@@ -20,17 +20,27 @@ class PhoneCatalog.Views.Search extends PhoneCatalog.Views.FadingView
     @
 
   search: (page) ->
-    params = {page: page}
+    searchParams = {page: page}
     for p in ("#{r}_id" for r in PhoneCatalog.Models.Phone.referenceProperties())
-      params[p] = @$("select[name='#{p}']").val()
+      searchParams[p] = @$("select[name='#{p}']").val()
     for p in PhoneCatalog.Models.Phone.booleanProperties()
-      params[p] = @$("input:radio[name='#{p}']:checked").val()
-    params["per_page"] = 6
-    @phonesView.collection.search params
+      searchParams[p] = @$("input:radio[name='#{p}']:checked").val()
+    searchParams["per_page"] = 6
+    @phonesView.collection.search searchParams
+
+  updateForm: (params) ->
+    for p in ("#{r}_id" for r in PhoneCatalog.Models.Phone.referenceProperties())
+      value = if params?[p]? then params[p] else ""
+      @$("select[name='#{p}']").val(value)
+    for p in PhoneCatalog.Models.Phone.booleanProperties()
+      value = if params?[p]? then params[p] else ""
+      @$("input:radio[name='#{p}'][value='#{value}']").attr('checked', 'checked')
 
   _doSearch: (event) ->
     event.preventDefault()
     @search()
+    query = @phonesView.collection.paramsToQueryString()
+    Backbone.history.navigate("search#{query}")
 
   _createSubviews: ->
     @_createOrAttachPhonesView()

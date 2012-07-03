@@ -5,7 +5,8 @@ class PhoneCatalog.Views.Main extends Backbone.View
   initialize: (options) ->
     @_attachExistentDOM()
     options.router.on("route:home", @showVendors, @)
-    options.router.on("route:search", @showSearch, @)
+    options.router.on("route:search", @showSearchFirstPage, @)
+    options.router.on("route:searchPage", @showSearch, @)
     options.router.on("route:phonesByVendor", @showPhones, @)
     options.router.on("route:phoneDetails", @showPhoneDetails, @)
 
@@ -38,7 +39,10 @@ class PhoneCatalog.Views.Main extends Backbone.View
       success: =>
         @_showView(@detailsView)
 
-  showSearch: (page) ->
+  showSearchFirstPage: (params) ->
+    @showSearch(1, params)
+
+  showSearch: (page, params) ->
     options = {
       vendors: PhoneCatalog.Data.Vendors
       phone_types: PhoneCatalog.Data.PhoneTypes
@@ -52,6 +56,7 @@ class PhoneCatalog.Views.Main extends Backbone.View
       @searchView = new PhoneCatalog.Views.Search(options)
       @$el.append(@searchView.render().el)
     @_showView(@searchView)
+    @searchView.updateForm(params)
     @searchView.search(page)
 
   _showView: (view) ->

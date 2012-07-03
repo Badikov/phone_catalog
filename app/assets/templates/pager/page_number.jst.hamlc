@@ -3,4 +3,4 @@
     %a= @page
 - else
   %li
-    %a{href: "#{PhoneCatalog.root}#{@prefix}page#{@page}", "data-page" => @page}= @page
+    %a{href: "#{PhoneCatalog.root}#{@prefix}page#{@page}#{@query}", "data-page" => @page}= @page

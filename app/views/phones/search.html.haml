@@ -32,12 +32,11 @@
                 = t("not_contain")
 
         %noscript
-          = hidden_field_tag :noscript
           = button_tag type: :submit, class: "btn btn-large btn-primary" do
             %i.icon-search.icon-white
             = t "search"
 
 :javascript
-  var phones = new PhoneCatalog.Collections.Phones({per_page: 6});
+  var phones = new PhoneCatalog.Collections.Phones({per_page: 6, searchParams: #{phone_search_params.to_json}});
   phones.reset(#{@phones.to_json});
   PhoneCatalog.Preloaded.Phones = phones;
