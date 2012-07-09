@@ -10,20 +10,22 @@ class PhoneCatalog.Views.Main extends Backbone.View
     options.router.on("route:phonesByVendor", @showPhones, @)
     options.router.on("route:phoneDetails", @showPhoneDetails, @)
 
-  showVendors: ->
+  showVendors: ->    
     vendors = PhoneCatalog.Data.Vendors
     unless @vendorsView?
       @vendorsView = new PhoneCatalog.Views.VendorsIndex(collection: vendors, display: false)
       @$el.append(@vendorsView.render().el)
 
+    @_pageTitle(I18n.t("vendors"))
     @_showView(@vendorsView)
 
   showPhones: (vendorName, page) ->
     vendors = PhoneCatalog.Data.Vendors
     vendor = vendors.find (vendor) ->
       vendor.get("url") == vendorName
+    @_pageTitle(vendor.get("name"))
     unless @phonesByVendorView?
-      @phonesByVendorView = new PhoneCatalog.Views.PhonesByVendor(vendor: vendor, display: false)
+      @phonesByVendorView = new PhoneCatalog.Views.PhonesByVendor(vendor: vendor.clone(), display: false)
       @$el.append(@phonesByVendorView.render().el)
     @phonesByVendorView.search vendor, page, =>
       @_showView(@phonesByVendorView)
@@ -37,6 +39,7 @@ class PhoneCatalog.Views.Main extends Backbone.View
     phones = new PhoneCatalog.Collections.Phones([phone])
     phone.fetch
       success: =>
+        @_pageTitle(phone.get("name"))
         @_showView(@detailsView)
 
   showSearchFirstPage: (params) ->
@@ -55,6 +58,7 @@ class PhoneCatalog.Views.Main extends Backbone.View
       options["display"] = false
       @searchView = new PhoneCatalog.Views.Search(options)
       @$el.append(@searchView.render().el)
+    @_pageTitle(I18n.t("search"))
     @_showView(@searchView)
     @searchView.updateForm(params)
     @searchView.search(page)
@@ -87,7 +91,7 @@ class PhoneCatalog.Views.Main extends Backbone.View
       vendors = PhoneCatalog.Data.Vendors
       vendor = vendors.find (vendor) ->
         vendor.get("url") == vendorName
-      @phonesByVendorView = new PhoneCatalog.Views.PhonesByVendor(el: phonesEl, vendor: vendor)
+      @phonesByVendorView = new PhoneCatalog.Views.PhonesByVendor(el: phonesEl, vendor: vendor.clone())
       @currentView = @phonesByVendorView
 
   _attachDetailsDOM: ->
@@ -101,3 +105,6 @@ class PhoneCatalog.Views.Main extends Backbone.View
     unless searchEl.length is 0
       @searchView = new PhoneCatalog.Views.Search(el: searchEl)
       @currentView = @searchView
+
+  _pageTitle: (title) ->
+    $("title").text("#{title} - #{I18n.t('phone_catalog')}")

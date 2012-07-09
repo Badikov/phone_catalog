@@ -28,6 +28,7 @@ class PhoneCatalog.Views.PhonesByVendor extends PhoneCatalog.Views.FadingView
     for attrName, attrValue of vendor.attributes
       @vendor.set(attrName, attrValue, silent: true)
     @vendor.change()
+    @phonesPager.options.pathPrefix = "#{@vendor.get('url')}/"
     @phonesView.collection.search({vendor_id: @vendor.get('id'), per_page: 8, page: (if page? then page else 1)}, callback)
 
   _createSubviews: ->
