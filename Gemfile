@@ -39,5 +39,6 @@ group :test, :development do
   gem "rspec-rails", "~> 2.9"
   gem "shoulda-matchers", "~> 1.0.0"
   gem "spork-rails", "~> 3.2.0"
-  gem "watchr", "~> 0.7"
+  gem "guard-rspec"
+  gem "guard-spork"
 end

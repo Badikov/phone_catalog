@@ -1,5 +1,5 @@
-require 'spec_helper'
+# require 'spec_helper'
 
-describe VendorsController do
+# describe VendorsController do
 
-end
+# end

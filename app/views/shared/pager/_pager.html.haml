@@ -7,7 +7,7 @@
             &laquo;
       - else
         %li
-          = link_to_page(@page - 1, "&laquo;", path_prefix)
+          = link_to_page(@page - 1, "&laquo;")
 
       - if @total_pages <= 5
         - (1..@total_pages).each do |p|
@@ -38,4 +38,4 @@
             &raquo;
       - else
         %li
-          = link_to_page(@page + 1, "&raquo;", path_prefix)
+          = link_to_page(@page + 1, "&raquo;")

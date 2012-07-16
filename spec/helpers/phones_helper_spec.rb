@@ -1,15 +1,10 @@
 require 'spec_helper'
 
-# Specs in this file have access to a helper object that includes
-# the PhonesHelper. For example:
-#
-# describe PhonesHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       helper.concat_strings("this","that").should == "this that"
-#     end
-#   end
-# end
 describe PhonesHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "phones search params" do
+    it "returns not blank request params which are phone's attributes" do
+      controller.params = { "vendor_id" => "1", "contain_3g" => "1", "phone_type_id" => "", "not_phone_attribute" => "value"}
+      helper.phone_search_params.should have(2).params
+    end
+  end
 end
