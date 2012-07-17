@@ -36,9 +36,16 @@ gem "backbone-on-rails"
 gem "i18n-js", "~> 2.1.2"
 
 group :test, :development do
-  gem "rspec-rails", "~> 2.9"
-  gem "shoulda-matchers", "~> 1.0.0"
+  gem "rspec-rails", "~> 2.10.1"
+  gem "factory_girl_rails", "~> 3.2.0"
   gem "spork-rails", "~> 3.2.0"
-  gem "guard-rspec"
+  gem "guard-rspec", "~> 0.7.0"
   gem "guard-spork"
+end
+
+group :test do
+  gem "faker", "~> 1.0.1"
+  gem "capybara", "~> 1.1.2"
+  gem "database_cleaner", "~> 0.7.2"
+  gem "launchy", "~> 2.1.0"
 end
