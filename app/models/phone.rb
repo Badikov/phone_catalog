@@ -1,5 +1,6 @@
 class Phone < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
+  validates :image, presence: true
   belongs_to :vendor
   belongs_to :case_type
   belongs_to :phone_type
@@ -23,14 +24,19 @@ class Phone < ActiveRecord::Base
      :contain_memory_card, :contain_mp3_player, :contain_radio,
      :contain_camera, :contain_double_sim_support].each do |property|
       unless params[property].blank?
-        value = if params[property] == "1"
-                  true
-                elsif params[property] == "0"
-                  false
-                end
-        phones = phones.where(property => value)
+        phones = phones.where(property => param_to_boolean(params[property]))
       end
     end
     phones
+  end
+
+  private
+
+  def self.param_to_boolean(param)
+    if param == "1"
+      true
+    elsif param == "0"
+      false
+    end
   end
 end

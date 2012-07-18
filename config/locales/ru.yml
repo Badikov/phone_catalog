@@ -30,3 +30,8 @@ ru:
     contain_radio: "Радио"
     contain_camera: "Камера"
     contain_double_sim_support: "Две SIM карты"
+
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "Запись неверная"
