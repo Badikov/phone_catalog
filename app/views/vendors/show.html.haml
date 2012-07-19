@@ -1,0 +1,23 @@
+- page_title @vendor.name
+
+#phones{"data-vendor" => @vendor.url}
+  .row
+    .span12
+      %ul.breadcrumb
+        %li
+          = link_to t("all_vendors"), root_path
+          %span.divider= "/"
+        %li.active= @vendor.name
+
+  .row
+    .span12
+      = render "shared/pager/pager", path_prefix: "#{@vendor.url}/"
+
+  .row
+    .span12
+      = render "shared/phones_list", phones: @phones
+
+:javascript
+  var phones = new PhoneCatalog.Collections.Phones({per_page: 8, vendor_id: #{@vendor.id}});
+  phones.reset(#{@phones.to_json});
+  PhoneCatalog.Preloaded.Phones = phones;

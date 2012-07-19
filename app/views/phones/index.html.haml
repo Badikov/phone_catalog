@@ -1,23 +1,44 @@
-- page_title @vendor.name
+- page_title t('search')
 
-#phones{"data-vendor" => @vendor.url}
+#search
   .row
     .span12
-      %ul.breadcrumb
-        %li
-          = link_to t("all_vendors"), root_path
-          %span.divider= "/"
-        %li.active= @vendor.name
-
+      = render "shared/pager/pager", path_prefix: "search/"
   .row
-    .span12
-      = render "shared/pager/pager", path_prefix: "#{@vendor.url}/"
+    .span7
+      = render "shared/phones_list", phones: @phones
+    .span5
+      = form_tag search_path, method: :get, class: "form-horizontal" do
+        - {"vendor" => Vendor.all, "phone_type" => PhoneType.all, "case_type" => CaseType.all,
+            "platform" => Platform.all, "screen_type" => ScreenType.all,
+            "touch_screen_type" => TouchScreenType.all}.each do |property, values|
+          .control-group
+            = label_tag "#{property}_id", t("phone.#{property}"), class: "control-label"
+            .controls
+              = select_tag "#{property}_id", options_for_select(values.collect{|v| [v.name, v.id]}.unshift(["< #{t('any')} >", ""]), params["#{property}_id"].blank? ? nil : params["#{property}_id"])
 
-  .row
-    .span12
-      = render "list", phones: @phones
+        - ["contain_touch_screen", "contain_3g", "contain_wifi", "contain_bluetooth", "contain_gps",
+              "contain_memory_card", "contain_mp3_player", "contain_radio", "contain_camera",
+              "contain_double_sim_support"].each do |property|
+          .control-group
+            = label_tag nil, t("phone.#{property}"), class: "control-label"
+            .controls
+              = label_tag nil, class: "inline radio" do
+                = radio_button_tag property, "", params[property].blank?
+                = t("any")
+              = label_tag nil, class: "inline radio" do
+                = radio_button_tag property, "1", params[property] == "1"
+                = t("contain")
+              = label_tag nil, class: "inline radio" do
+                = radio_button_tag property, "0", params[property] == "0"
+                = t("not_contain")
+
+        %noscript
+          = button_tag type: :submit, class: "btn btn-large btn-primary" do
+            %i.icon-search.icon-white
+            = t "search"
 
 :javascript
-  var phones = new PhoneCatalog.Collections.Phones({per_page: 8, vendor_id: #{@vendor.id}});
+  var phones = new PhoneCatalog.Collections.Phones({per_page: 6, searchParams: #{phone_search_params.to_json}});
   phones.reset(#{@phones.to_json});
   PhoneCatalog.Preloaded.Phones = phones;
