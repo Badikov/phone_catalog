@@ -20,6 +20,22 @@ describe PhonesController do
         get :index
         response.should render_template :index
       end
+
+      it "assigns requested page to @page" do
+        page = 2
+        get :index, page: page
+        assigns(:page).should == page
+      end
+
+      it "assigns 1 to @page when page did not request" do
+        get :index
+        assigns(:page).should == 1
+      end
+
+      it "assigns total pages to @total_pages" do
+        get :index
+        assigns(:total_pages).should == 1
+      end
     end
 
     context "when request format is json" do

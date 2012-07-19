@@ -37,5 +37,21 @@ describe VendorsController do
       get :show
       response.should render_template :show
     end
+
+    it "assigns total pages to @total_pages" do
+      get :show, vendor_url: @nokia.url
+      assigns(:total_pages).should == 1
+    end
+
+    it "assigns requested page to @page" do
+      page = 2
+      get :show, page: page
+      assigns(:page).should == page
+    end
+
+    it "assigns 1 to @page when page did not request" do
+      get :show
+      assigns(:page).should == 1
+    end
   end
 end
