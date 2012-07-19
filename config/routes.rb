@@ -22,11 +22,6 @@ PhoneCatalog::Application.routes.draw do
 
   scope "api" do
     resources :vendors, only: :index, defaults: {format: :json}
-    resources :phone_types, only: :index
-    resources :case_types, only: :index
-    resources :platforms, only: :index
-    resources :screen_types, only: :index
-    resources :touch_screen_types, only: :index
     resources :phones, only: [:index, :show], defaults: {format: :json}
   end
 
