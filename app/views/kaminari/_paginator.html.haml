@@ -1,0 +1,32 @@
+-#  The container tag
+-#  available local variables
+-#    current_page:  a page object for the currently displayed page
+-#    num_pages:     total number of pages
+-#    per_page:      number of items to fetch per page
+-#    remote:        data-remote
+-#    paginator:     the paginator that renders the pagination tags inside
+= paginator.render do
+  .pagination
+    %ul
+      - if num_pages >= current_page.to_i
+        - if num_pages > 1
+          = prev_page_tag
+          - if num_pages <= 5
+            - (1..num_pages).each do |p|
+              = page_tag p
+          - else
+            = page_tag 1
+            - if [1, 2, 3, num_pages - 1, num_pages].include?(current_page)
+              = page_tag 2
+            - if [1, 2, num_pages - 1, num_pages].include?(current_page)
+              = gap_tag
+            - else
+              - if current_page - 1 > 2
+                = gap_tag
+              = page_tag current_page
+              - if (num_pages - current_page.to_i) > 2
+                = gap_tag
+            - if [1, 2, num_pages - 2, num_pages - 1, num_pages].include?(current_page)
+              = page_tag(num_pages - 1)
+            = page_tag num_pages
+          = next_page_tag

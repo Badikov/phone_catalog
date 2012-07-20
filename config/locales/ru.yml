@@ -31,6 +31,14 @@ ru:
     contain_camera: "Камера"
     contain_double_sim_support: "Две SIM карты"
 
+  views:
+    pagination:
+      first: "Первая"
+      last: "Последняя"
+      previous: "&laquo;"
+      next: "&raquo;"
+      truncate: "..."
+
   activerecord:
     errors:
       messages:

@@ -3,7 +3,11 @@
 #search
   .row
     .span12
-      = render "shared/pager/pager", collection: @phones
+      - if @phones.num_pages < 2
+        .pagination
+          &nbsp;
+      - else
+        = paginate @phones
   .row
     .span7
       = render "shared/phones_list", phones: @phones

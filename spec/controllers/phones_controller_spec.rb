@@ -5,15 +5,8 @@ describe PhonesController do
   describe "GET #index" do
     before(:each) do
       @phones = [mock_model(Phone), mock_model(Phone), mock_model(Phone)]
-      @phones.stub(:paginate).and_return(@phones)
-      @phones.stub(:total_pages).and_return(1)
-      @phones.stub(:current_page).and_return(1)
-      @phones.each do |p|
-        p.stub(:as_json) do
-          {id: p.id, name: p.name, image: p.image}.to_json
-        end
-      end
-
+      stub_kaminari_methods(@phones)
+      @phones.stub(:as_json).and_return(@phones.map { |p| {id: p.id, name: p.name, image: p.image} })
       Phone.stub(:by_params).and_return(@phones)
     end
 
@@ -29,10 +22,7 @@ describe PhonesController do
     context "when request format is json" do
       it "render array of phones as json" do
         get :index, format: :json
-        phones_json = @phones.map do |p|
-          {id: p.id, name: p.name, image: p.image}.to_json
-        end
-        response.body.should == {total_pages: 1, page: 1, phones: phones_json}.to_json
+        response.body.should == {total_pages: @phones.num_pages, page: @phones.current_page, phones: @phones.as_json}.to_json
       end
     end
   end

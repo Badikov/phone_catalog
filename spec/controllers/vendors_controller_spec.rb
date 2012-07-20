@@ -18,11 +18,14 @@ describe VendorsController do
       Vendor.stub(:where).with(url: @vendor.url).and_return([@vendor])
 
       @phones = [double(Phone), double(Phone), double(Phone)]
-      @phones.stub(:paginate).and_return(@phones)
-
+      stub_kaminari_methods(@phones)
       Phone.stub(:by_vendor_url).with(@vendor.url).and_return(@phones)
 
       get :show, vendor_url: @vendor.url
     end
+
+    it { should assign_to(:vendor).with(@vendor) }
+    it { should assign_to(:phones).with(@phones) }
+    it { should render_template :show }
   end
 end
