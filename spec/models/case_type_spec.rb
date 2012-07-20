@@ -2,12 +2,8 @@ require 'spec_helper'
 
 describe CaseType do
 
-  it "is invalid without name" do
-    build(:case_type, name: nil).should be_invalid
-  end
+  subject { create :case_type }
 
-  it "is invalid with duplicate name" do
-    create(:case_type, name: "classic")
-    build(:case_type, name: "classic").should be_invalid
-  end
+  it { should validate_presence_of(:name) }
+  it { should validate_uniqueness_of(:name) }
 end

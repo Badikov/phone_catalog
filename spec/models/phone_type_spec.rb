@@ -2,12 +2,8 @@ require 'spec_helper'
 
 describe PhoneType do
 
-  it "is invalid without name" do
-    build(:phone_type, name: nil).should be_invalid
-  end
+  subject { create :phone_type }
 
-  it "is invalid with duplicate name" do
-    create(:phone_type, name: "smartphone")
-    build(:phone_type, name: "smartphone").should be_invalid
-  end
+  it { should validate_presence_of(:name) }
+  it { should validate_uniqueness_of(:name) }
 end

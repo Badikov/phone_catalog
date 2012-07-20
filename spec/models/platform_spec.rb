@@ -2,12 +2,8 @@ require 'spec_helper'
 
 describe Platform do
 
-  it "is invalid without name" do
-    build(:platform, name: nil).should be_invalid
-  end
+  subject { create :platform }
 
-  it "is invalid with duplicate name" do
-    create(:platform, name: "android")
-    build(:platform, name: "android").should be_invalid
-  end
+  it { should validate_presence_of(:name) }
+  it { should validate_uniqueness_of(:name) }
 end

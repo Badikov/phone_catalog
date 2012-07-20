@@ -2,21 +2,14 @@ require 'spec_helper'
 
 describe Phone do
 
-  it "has valid factory" do
-    create(:phone).should be_valid
-  end
+  describe "valid phone" do
 
-  it "is invalid without name" do
-    build(:phone, name: nil).should be_invalid
-  end
+    let(:phone) { create(:phone) }
 
-  it "is invalid with duplicate name" do
-    create(:phone, name: "Nokia E51")
-    build(:phone, name: "Nokia E51").should be_invalid
-  end
+    it { phone.should validate_presence_of(:name) }
+    it { phone.should validate_uniqueness_of(:name) }
 
-  it "is invalid without image" do
-    build(:phone, image: nil).should be_invalid
+    it { phone.should validate_presence_of(:image) }
   end
 
   describe "filter" do

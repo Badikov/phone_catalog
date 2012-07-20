@@ -2,12 +2,8 @@ require 'spec_helper'
 
 describe TouchScreenType do
 
-  it "is invalid without name" do
-    build(:touch_screen_type, name: nil).should be_invalid
-  end
+  subject { create :touch_screen_type }
 
-  it "is invalid with duplicate name" do
-    create(:touch_screen_type, name: "resistive")
-    build(:touch_screen_type, name: "resistive").should be_invalid
-  end
+  it { should validate_presence_of(:name) }
+  it { should validate_uniqueness_of(:name) }
 end

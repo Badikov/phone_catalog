@@ -2,21 +2,11 @@ require 'spec_helper'
 
 describe Vendor do
 
-  it "is invalid without name" do
-    build(:vendor, name: nil).should be_invalid
-  end
+  subject { create :vendor }
 
-  it "is invalid without url" do
-    build(:vendor, url: nil).should be_invalid
-  end
+  it { should validate_presence_of(:name) }
+  it { should validate_uniqueness_of(:name) }
 
-  it "is invalid with duplicate name" do
-    create(:vendor, name: "ASUS")
-    build(:vendor, name: "ASUS").should be_invalid
-  end
-
-  it "is invalid with duplicate url" do
-    create(:vendor, url: "asus")
-    build(:vendor, url: "asus").should be_invalid
-  end
+  it { should validate_presence_of(:url) }
+  it { should validate_uniqueness_of(:url) }
 end
