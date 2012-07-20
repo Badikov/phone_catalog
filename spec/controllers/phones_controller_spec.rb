@@ -5,9 +5,9 @@ describe PhonesController do
   describe "GET #index" do
     before(:each) do
       @phones = [mock_model(Phone), mock_model(Phone), mock_model(Phone)]
-      @phones.stub(:limit).and_return(@phones)
-      @phones.stub(:offset).and_return(@phones)
-      @phones.stub(:count).and_return(@phones.length)
+      @phones.stub(:paginate).and_return(@phones)
+      @phones.stub(:total_pages).and_return(1)
+      @phones.stub(:current_page).and_return(1)
       @phones.each do |p|
         p.stub(:as_json) do
           {id: p.id, name: p.name, image: p.image}.to_json
@@ -18,31 +18,12 @@ describe PhonesController do
     end
 
     context "when request format is html" do
-
-      context "always" do
-        before(:each) do
-          get :index
-        end
-
-        it { should assign_to(:phones).with(@phones) }
-        it { should render_template :index }
-        it { should assign_to(:total_pages) }
+      before(:each) do
+        get :index
       end
 
-      context "when page did not request" do
-        it do
-          get :index
-          should assign_to(:page).with(1)
-        end
-      end
-
-      context "when page requested" do
-        it do
-          @page = 2
-          get :index, page: @page
-          should assign_to(:page).with(@page)
-        end
-      end
+      it { should assign_to(:phones).with(@phones) }
+      it { should render_template :index }
     end
 
     context "when request format is json" do

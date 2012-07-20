@@ -3,7 +3,7 @@
 #search
   .row
     .span12
-      = render "shared/pager/pager", path_prefix: "search/"
+      = render "shared/pager/pager", collection: @phones
   .row
     .span7
       = render "shared/phones_list", phones: @phones
