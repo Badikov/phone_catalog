@@ -3,7 +3,7 @@
     .container
       %a.brand{href: root_path}= t("phone_catalog")
       %ul.nav
-        %li{class: ("active" if current_page == :vendors)}
+        %li{class: ("active" if current_page?(root_path) || current_page?(controller: :vendors, action: :index))}
           %a{href: root_path}= I18n.t("vendors")
-        %li{class: ("active" if current_page == :search)}
+        %li{class: ("active" if current_page?(controller: :phones, action: :index))}
           %a{href: "#{root_path}search"}= I18n.t("search")

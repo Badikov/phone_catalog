@@ -1,7 +1,6 @@
 class PhonesController < ApplicationController
 
   def index
-    @current_page = :search
     per_page = params[:per_page].blank? ? 6 : params[:per_page].to_i
     @phones = Phone.by_params(params).page(params[:page]).per(per_page)
     respond_to do |format|
