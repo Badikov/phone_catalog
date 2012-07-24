@@ -1,5 +1,40 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  inches: "inches"
+  grams: "grams"
+  any: "any"
+  contain: "contain"
+  not_contain: "not contain"
+
+  phone_catalog: "Phone catalog"
+
+  search: "Search"
+  vendors: "Vendors"
+  all_vendors: "All vendors"
+
+  phone:
+    vendor: "Vendor"
+    phone_type: "Phone type"
+    case_type: "Case type"
+    platform: "Platform"
+    screen_type: "Screen type"
+    touch_screen_type: "Touch screen type"
+    screen_size: "Screen size"
+    weight: "Weight"
+    contain_touch_screen: "Touch screen"
+    contain_3g: "3G"
+    contain_wifi: "Wi-Fi"
+    contain_bluetooth: "BlueTooth"
+    contain_gps: "GPS"
+    contain_memory_card: "Memory card"
+    contain_mp3_player: "MP3"
+    contain_radio: "Radio"
+    contain_camera: "Camera"
+    contain_double_sim_support: "Double SIM-card support"
+
+  views:
+    pagination:
+      first: "First"
+      last: "Last"
+      previous: "&laquo;"
+      next: "&raquo;"
+      truncate: "..."

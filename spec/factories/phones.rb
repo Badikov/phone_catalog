@@ -19,7 +19,7 @@ FactoryGirl.define do
     end
 
     factory :nokia_6089 do
-      name "Nokia 6089"
+      name "Nokia 6085"
       association :vendor, factory: :nokia
       contain_3g false
     end

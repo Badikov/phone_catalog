@@ -38,8 +38,3 @@ ru:
       previous: "&laquo;"
       next: "&raquo;"
       truncate: "..."
-
-  activerecord:
-    errors:
-      messages:
-        record_invalid: "Запись неверная"
