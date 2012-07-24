@@ -21,6 +21,6 @@
     PhoneCatalog.Data.TouchScreenTypes = new PhoneCatalog.Collections.TouchScreenTypes();
     PhoneCatalog.Data.TouchScreenTypes.reset(#{TouchScreenType.all.to_json});
   %body{"data-root" => root_path}
-    = render "shared/navigation", current_page: @current_page
+    = render "shared/navigation"
     #main.container
       = yield
